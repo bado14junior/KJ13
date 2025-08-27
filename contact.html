@@ -1,33 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JB Plateforme Global - Contact</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JB Plateforme Global - Contact</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Contactez JB Plateforme Global</h1>
-  </header>
+    <header>
+        <h1>JB Plateforme Global</h1>
+        <nav>
+            <a href="index.html">Accueil</a> |
+            <a href="blog.html">Blog</a> |
+            <a href="media.html">Média</a> |
+            <a href="services.html">Services</a> |
+            <a href="boutique.html">Boutique</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
 
-  <nav>
-    <a href="index.html">Accueil</a>
-    <a href="blog.html">Blog</a>
-    <a href="media.html">Média</a>
-    <a href="boutique.html">Boutique</a>
-    <a href="services.html">Services</a>
-[27/08, 06:48] Chat GPT WhatsApp: <a href="contact.html">Contact</a>
-  </nav>
+    <main>
+        <section>
+            <h2>Contactez-nous</h2>
+            <form action="mailto:contact@jbplateforme.com" method="post" enctype="text/plain">
+                <label for="nom">Nom :</label><br />
+                <input type="text" id="nom" name="nom" required /><br /><br />
 
-  <main>
-    <h2>Nous contacter</h2>
-    <p>Pour toute demande, envoyez un email à : <a href="mailto:contact@jbplateforme.com">contact@jbplateforme.com</a></p>
-  </main>
+                <label for="email">Email :</label><br />
+                <input type="email" id="email" name="email" required /><br /><br />
 
-  <footer>
-    <p>&copy; 2025 JB Plateforme Global</p>
-  </footer>
+                <label for="message">Message :</label><br />
+                <textarea id="message" name="message" rows="5" required></textarea><br /><br/><input type="submit" value="Envoyer" />
+                <input type="reset" value="Effacer" />
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 JB Plateforme Global. Tous droits réservés.</p>
+        <p>Contact : contact@jbplateforme.com</p>
+    </footer>
 </body>
 </html>
