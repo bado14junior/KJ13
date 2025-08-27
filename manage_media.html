@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestion des Médias</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Gestion des Médias</h1>
+    <nav>
+      <a href="admin_dashboard.html">Tableau de bord</a> |
+      <a href="manage_articles.html">Articles</a> |
+      <a href="gérer_utilisateurs.html">Utilisateurs</a> |
+      <a href="manage_media.html">Médias</a> |
+      <a href="admin.html">Déconnexion</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Liste des médias</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom du fichier</th>
+            <th>Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>image1.jpg</td>
+            <td>Image</td>
+            <td>
+              <button>Modifier</button>
+              <button>Supprimer</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>video1.mp4</td>
+            <td>Vidéo</td>
+            <td><button>Modifier</button>
+              <button>Supprimer</button>
+            </td>
+          </tr>
+          <!-- Ajoute d'autres médias ici -->
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Ajouter un nouveau média</h2>
+      <form>
+        <label for="mediaName">Nom du fichier :</label>
+        <input type="text" id="mediaName" name="mediaName" required />
+
+        <label for="mediaType">Type :</label>
+        <select id="mediaType" name="mediaType" required>
+          <option value="image">Image</option>
+          <option value="video">Vidéo</option>
+          <option value="audio">Audio</option>
+        </select>
+
+        <label for="mediaFile">Fichier :</label>
+        <input type="file" id="mediaFile" name="mediaFile" required />
+
+        <button type="submit">Ajouter</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 JB Plateforme - Tous droits réservés</p>
+  </footer>
+</body>
+</html>
