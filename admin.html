@@ -2,12 +2,98 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Administration - JB Plateforme Global</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Administration - JB Plateforme Global</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  /* Styles spécifiques admin */
+  main {
+    max-width: 900px;
+  }
+  form {
+    margin-bottom: 30px;
+    background: #eef2f7;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  input[type="submit"] {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #004080;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  th {
+    background: #004080;
+    color: white;
+  }
+</style>
 </head>
 <body>
-  <h1>Page Administration</h1>
-  <p>Accès réservé à l’administrateur.</p>
-  <a href="index.html">⬅ Retour à l'accueil</a>
+<header>
+  <h1>Administration - JB Plateforme Global</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="blog.html">Blog</a>
+    <a href="media.html">Média</a><a href="boutique.html">Boutique</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Connexion</h2>
+  <form action="#" method="post">
+    <label for="username">Nom d'utilisateur :</label>
+    <input type="text" id="username" name="username" required />
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" required />
+    <input type="submit" value="Se connecter" />
+  </form>
+
+  <h2>Gestion des articles</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Article exemple</td>
+        <td>2025-08-27</td>
+        <td><button>Modifier</button> <button>Supprimer</button></td>
+      </tr>
+      <!-- Ajouter dynamiquement ici -->
+    </tbody>
+  </table>
+</main>
+
+<footer>
+  &copy; 2025 JB Plateforme Global. Tous droits réservés.
+</footer>
 </body>
 </html>
