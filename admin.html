@@ -1,99 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Administration - JB Plateforme Global</title>
-<link rel="stylesheet" href="style.css" />
-<style>
-  /* Styles spécifiques admin */
-  main {
-    max-width: 900px;
-  }
-  form {
-    margin-bottom: 30px;
-    background: #eef2f7;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  label {
-    display: block;
-    margin-top: 10px;
-  }
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-  }
-  input[type="submit"] {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: #004080;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  th {
-    background: #004080;
-    color: white;
-  }
-</style>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JB Plateforme Global - Administration</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .admin-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style></head>
 <body>
-<header>
-  <h1>Administration - JB Plateforme Global</h1>
-  <nav>
-    <a href="index.html">Accueil</a>
-    <a href="blog.html">Blog</a>
-    <a href="media.html">Média</a><a href="boutique.html">Boutique</a>
-  </nav>
-</header>
+  <div class="admin-container">
+    <h2>Administration JB Plateforme Global</h2>
+    <form id="adminForm">
+      <label for="username">Nom d'utilisateur</label>
+      <input type="text" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required />
 
-<main>
-  <h2>Connexion</h2>
-  <form action="#" method="post">
-    <label for="username">Nom d'utilisateur :</label>
-    <input type="text" id="username" name="username" required />
-    <label for="password">Mot de passe :</label>
-    <input type="password" id="password" name="password" required />
-    <input type="submit" value="Se connecter" />
-  </form>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required />
 
-  <h2>Gestion des articles</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Titre</th>
-        <th>Date</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Article exemple</td>
-        <td>2025-08-27</td>
-        <td><button>Modifier</button> <button>Supprimer</button></td>
-      </tr>
-      <!-- Ajouter dynamiquement ici -->
-    </tbody>
-  </table>
-</main>
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
 
-<footer>
-  &copy; 2025 JB Plateforme Global. Tous droits réservés.
-</footer>
+  <script>
+    document.getElementById('adminForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = e.target.username.value;
+      const password = e.target.password.value;
+
+      // Exemple simple de validation (à renforcer côté serveur pour un vrai projet)
+      if(username === "admin" && password === "jb2025") {
+        alert("Connexion réussie !");
+        // Ici, tu peux rediriger vers une autre page d'administration ou afficher le tableau de bord
+      } else {
+        alert("Nom d'utilisateur ou mot de passe incorrect.");
+      }
+    });
+  </script>
 </body>
 </html>
