@@ -2,15 +2,52 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Gérer les Utilisateurs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Utilisateurs - JB Plateforme Global</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Gestion des utilisateurs</h2>
-  <p>Liste des utilisateurs inscrits :</p>
-  <table>
-    <tr><th>Nom</th><th>Email</th><th>Action</th></tr>
-    <tr><td>Jean Dupont</td><td>jean@example.com</td><td><button>Supprimer</button></td></tr>
-  </table>
+  <header>
+    <h1>Tableau de Bord - Gestion des Utilisateurs</h1>
+    <nav>
+      <a href="admin_dashboard.html">Tableau de bord</a>
+      <a href="manage_articles.html">Articles</a>
+      <a href="manage_media.html">Médias</a>
+      <a href="logout.html">Déconnexion</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Liste des Utilisateurs</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jean Kaboré</td>
+            <td>jean@exemple.com</td>
+            <td>Utilisateur</td>
+            <td><button>Supprimer</button></td>
+          </tr>
+          <tr>
+            <td>Awa Traoré</td>
+            <td>awa@exemple.com</td>
+            <td>Administrateur</td>
+            <td><button>Désactiver</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section></main>
+
+  <footer>
+    <p>© 2025 JB Plateforme Global</p>
+  </footer>
 </body>
 </html>
