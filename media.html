@@ -2,12 +2,66 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Média - JB Plateforme Global</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Média - JB Plateforme Global</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  main {
+    max-width: 900px;
+  }
+  .media-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .media-item {
+    flex: 1 1 45%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background: #f9f9f9;
+  }
+  .media-item img, .media-item video {
+    max-width: 100%;
+    border-radius: 5px;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+</style>
 </head>
 <body>
-  <h1>Espace Média</h1>
-  <p>Vidéos, images et actualités disponibles ici.</p>
-  <a href="index.html">⬅ Retour à l'accueil</a>
+<header>
+  <h1>JB Plateforme Global</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="blog.html">Blog</a>
+    <a href="media.html" class="active">Média</a>
+    <a href="boutique.html">Boutique</a>
+    <a href="admin.html">Administration</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Galerie Média</h2>
+  <div class="media-gallery">
+    <div class="media-item">
+      <img src="images/photo1.jpg" alt="Photo 1" />
+      <p>Photo de paysage</p>
+    </div>
+    <div class="media-item">
+      <video controls><source src="videos/video1.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+      <p>Vidéo promotionnelle</p>
+    </div>
+    <!-- Ajoutez d'autres médias ici -->
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 JB Plateforme Global. Tous droits réservés.
+</footer>
 </body>
 </html>
