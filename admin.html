@@ -34,6 +34,24 @@
         message.style.color = "red";
       }
     });
-  </script>
+<script>
+  const loginForm = document.getElementById("loginForm");
+  const message = document.getElementById("message");
+
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if (user === "admin" && pass === "jb123") {
+      message.style.color = "green";
+      message.textContent = "Connexion réussie !";
+      window.location.href = "dashboard.html";
+    } else {
+      message.textContent = "Identifiants incorrects.";
+      message.style.color = "red";
+    }
+  });
+</script>
 </body>
 </html>
