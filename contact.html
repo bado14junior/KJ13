@@ -1,44 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>JB Plateforme Global - Contact</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - JB Plateforme Global</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>JB Plateforme Global</h1>
-        <nav>
-            <a href="index.html">Accueil</a> |
-            <a href="blog.html">Blog</a> |
-            <a href="media.html">Média</a> |
-            <a href="services.html">Services</a> |
-            <a href="boutique.html">Boutique</a> |
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+  <header>
+    <h1>Contactez JB Plateforme Global</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="media.html">Médias</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section>
-            <h2>Contactez-nous</h2>
-            <form action="mailto:contact@jbplateforme.com" method="post" enctype="text/plain">
-                <label for="nom">Nom :</label><br />
-                <input type="text" id="nom" name="nom" required /><br /><br />
+  <main>
+    <section>
+      <h2>Nous contacter</h2>
+      <form action="mailto:contact@jbplateforme.com" method="post" enctype="text/plain">
+        <label for="name">Nom :</label><br />
+        <input type="text" id="name" name="name" required /><br /><br />
 
-                <label for="email">Email :</label><br />
-                <input type="email" id="email" name="email" required /><br /><br />
+        <label for="email">Email :</label><br />
+        <input type="email" id="email" name="email" required /><br /><br />
 
-                <label for="message">Message :</label><br />
-                <textarea id="message" name="message" rows="5" required></textarea><br /><br/><input type="submit" value="Envoyer" />
-                <input type="reset" value="Effacer" />
-            </form>
-        </section>
-    </main>
+        <label for="message">Message :</label><br /><textarea id="message" name="message" rows="5" required></textarea><br /><br />
 
-    <footer>
-        <p>© 2025 JB Plateforme Global. Tous droits réservés.</p>
-        <p>Contact : contact@jbplateforme.com</p>
-    </footer>
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 JB Plateforme Global - Tous droits réservés.</p>
+    <div class="socials">
+      <a href="#">Facebook</a> |
+      <a href="#">WhatsApp</a> |
+      <a href="#">Instagram</a> |
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
 </body>
 </html>
