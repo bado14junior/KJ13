@@ -18,61 +18,28 @@
   </script>
 
 </body>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actualités - JB Plateforme Global</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
+html
+<h2>Actualités par pays</h2>
+<label for="pays-select">Choisissez un pays :</label>
+<select id="pays-select">
+  <option>Burkina Faso</option>
+  <option>Côte d'Ivoire</option>
+  <option>Mali</option>
+  <option>Niger</option>
+  <option>Sénégal</option>
+  <option>Togo</option>
+  <option>Bénin</option>
+  <option>Ghana</option>
+  <option>Guinée</option>
+  <option>RDC</option>
+  <option>Kenya</option>
+  <option>Afrique du Sud</option>
+  <option>Algérie</option>
+  <option>Maroc</option>
+  <option>Tunisie</option>
+</select>
 
-    h2 {
-      color: #007BFF;
-    }
-
-    select {
-      padding: 8px;
-      font-size: 16px;
-    }
-
-    #contenu-actualites {
-      margin-top: 20px;
-      background-color: #f0f0f0;
-      padding: 15px;
-      border-radius: 8px;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Actualités par pays</h1>
-
-  <label for="pays-select">Choisissez un pays :</label>
-  <select id="pays-select">
-    <option value="bf">Burkina Faso</option>
-    <option value="ci">Côte d'Ivoire</option>
-    <option value="sn">Sénégal</option>
-  </select>
-
-  <div id="contenu-actualites"></div>
-
-  <script>
-    const actualites = {
-      bf: [
-        "Le Burkina Faso annonce un nouveau projet agricole.",
-        "Renforcement de la sécurité dans le Sahel."
-      ],
-      ci: [
-        "La Côte d'Ivoire lance un nouveau programme éducatif.",
-        "Croissance économique en hausse."
-      ],
-      sn: [
-        "Le Sénégal accueille une conférence sur le climat.",
-</html>
+<div id="contenu-actualites" style="margin-top: 20px;"></div>
 <body>
   <section id="news">
     <h2>Actualités internationales</h2>
@@ -84,3 +51,36 @@
   </section>
   <!-- Le reste de ta page -->
 </body>
+<script>
+  const actualites = {
+    "Burkina Faso": ["Inauguration d’un nouvel hôpital à Ouagadougou."],
+    "Côte d'Ivoire": ["Lancement d’un programme d'éducation numérique."],
+    "Mali": ["Séminaire sur la paix et la sécurité à Bamako."],
+    "Niger": ["Développement de l'agriculture durable."],
+    "Sénégal": ["Inauguration d’un nouvel hôpital à Dakar."],
+    "Togo": ["Projet de réhabilitation des routes."],"Bénin": ["Campagne de vaccination nationale lancée."],
+    "Ghana": ["Forum sur les énergies renouvelables."],
+    "Guinée": ["Nouvelles mesures pour l’éducation."],
+    "RDC": ["Lutte contre la déforestation intensifiée."],
+    "Kenya": ["Tech Summit 2025 à Nairobi."],
+    "Afrique du Sud": ["Conférence sur l’emploi des jeunes."],
+    "Algérie": ["Exposition internationale d’art."],
+    "Maroc": ["Investissements dans les transports."],
+    "Tunisie": ["Programme de tourisme durable."]
+  };
+
+  const selectPays = document.getElementById("pays-select");
+  const contenu = document.getElementById("contenu-actualites");
+
+  function afficherActualites(pays) {
+    const news = actualites[pays] || [];
+    contenu.innerHTML = news.map(item => `<p>${item}</p>`).join("");
+  }
+
+  selectPays.addEventListener("change", (e) => {
+    afficherActualites(e.target.value);
+  });
+
+  // Affichage initial
+  afficherActualites(selectPays.value);
+</script>
