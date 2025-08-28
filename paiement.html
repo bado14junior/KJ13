@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module de Paiement - JB Plateforme Global</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>JB Plateforme Global - Paiement</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="paiement.html">Paiement</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Choisissez un service de paiement</h2>
+    <form>
+      <label for="service">Type de service :</label>
+      <select id="service" name="service">
+        <option value="recharge">Recharge / Achat Crédit</option>
+        <option value="transfert">Transfert d'argent</option>
+        <option value="factures">Paiement de factures (SONABEL, ONEA...)</option>
+        <option value="abonnement">Abonnement (Canal+, Netflix...)</option>
+      </select>
+
+      <label for="montant">Montant :</label>
+      <input type="number" id="montant" name="montant" required>
+
+      <label for="numero">Numéro de téléphone :</label>
+      <input type="tel" id="numero" name="numero" required><button type="submit">Continuer</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 JB Plateforme Global</p>
+  </footer>
+
+</body>
+</html>
