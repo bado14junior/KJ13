@@ -2,84 +2,211 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Abonnement & Services - JB Plateforme Global</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abonnements & Services - JB Plateforme Global</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1em;
+      text-align: center;
+    }
+    nav {
+      background: #333;
+      padding: 0.5em;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    main {
+      padding: 2em;
+    }
+    section {
+      background: #fff;
+      padding: 1.5em;
+      margin-bottom: 2em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1em;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.5em;margin-top: 0.5em;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2em;
+    }
+  </style>
 </head>
 <body>
+
   <header>
     <h1>JB Plateforme Global</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <p>Abonnements, Services & Paiements</p>
   </header>
 
-  <main>
-    <h2>Services disponibles</h2>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="boutique.html">Boutique</a>
+    <a href="actualites.html">Actualités</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-    <!-- Section abonnement -->
+  <main>
+
+    <!-- Abonnement Section -->
     <section>
-      <h3>Abonnement TV / Streaming</h3>
+      <h2>Abonnement TV / Streaming</h2>
       <form>
-        <label>Nom:</label><input type="text" required><br>
-        <label>Numéro:</label><input type="tel" required><br>
-        <label>Service:</label>
-        <select>
+        <label>Nom :</label>
+        <input type="text" required>
+
+        <label>Numéro de téléphone :</label>
+        <input type="tel" required>
+
+        <label>Choisir un service :</label>
+        <select required>
           <option>Canal+</option>
           <option>Netflix</option>
           <option>YouTube Premium</option>
-        </select><br>
-        <label>Durée:</label>
-        <select>
+          <option>Amazon Prime</option>
+        </select>
+
+        <label>Durée :</label>
+        <select required>
           <option>1 mois</option>
           <option>3 mois</option>
-        </select><br><label>Mode de paiement:</label>
-        <select>
+          <option>6 mois</option></select>
+
+        <label>Mode de paiement :</label>
+        <select required>
           <option>Orange Money</option>
-          <option>MTN MoMo</option>
+          <option>MTN Mobile Money</option>
           <option>Moov Money</option>
           <option>Wave</option>
-          <option>Telecel</option>
-        </select><br>
+          <option>Telecel Money</option>
+        </select>
+
         <button type="submit">S’abonner</button>
       </form>
     </section>
 
-    <!-- Recharge -->
+    <!-- Recharge Section -->
     <section>
-      <h3>Recharge & Unités</h3>
+      <h2>Recharge & Achat d’unités</h2>
       <form>
-        <label>Opérateur:</label>
-        <select>
+        <label>Numéro à recharger :</label>
+        <input type="tel" required>
+
+        <label>Montant :</label>
+        <input type="number" required>
+
+        <label>Opérateur :</label>
+        <select required>
           <option>Orange</option>
           <option>MTN</option>
           <option>Moov</option>
-        </select><br>
-        <label>Montant:</label><input type="number" required><br>
-        <label>Numéro:</label><input type="tel" required><br>
+          <option>Telecel</option>
+        </select>
+
+        <label>Mode de paiement :</label>
+        <select required>
+          <option>Orange Money</option>
+          <option>MTN MoMo</option>
+          <option>Moov Money</option>
+          <option>Wave</option>
+          <option>Telecel Money</option>
+        </select>
+
         <button type="submit">Recharger</button>
       </form>
     </section>
 
-    <!-- Paiement factures -->
+    <!-- Dépôt / Transfert -->
     <section>
-      <h3>Paiement de Factures</h3>
+      <h2>Transfert & Dépôt d'argent</h2>
+      <form><label>Nom du destinataire :</label>
+        <input type="text" required>
+
+        <label>Numéro du destinataire :</label>
+        <input type="tel" required>
+
+        <label>Montant à transférer :</label>
+        <input type="number" required>
+
+        <label>Mode de paiement :</label>
+        <select required>
+          <option>Orange Money</option>
+          <option>MTN MoMo</option>
+          <option>Moov Money</option>
+          <option>Wave</option>
+          <option>Telecel Money</option>
+        </select>
+
+        <button type="submit">Transférer</button>
+      </form>
+    </section>
+
+    <!-- Paiement Factures -->
+    <section>
+      <h2>Paiement de factures</h2>
       <form>
-        <label>Type de facture:</label>
-        <select>
+        <label>Type de facture :</label>
+        <select required>
           <option>ONEA</option>
           <option>SONABEL</option>
           <option>Loyer</option>
-        </select><br>
-        <label>Montant:</label><input type="number" required><br>
-        <label>Référence client:</label><input type="text" required><br>
+          <option>Frais de scolarité</option>
+        </select>
+
+        <label>Référence client :</label>
+        <input type="text" required>
+
+        <label>Montant :</label>
+        <input type="number" required>
+
+        <label>Mode de paiement :</label>
+        <select required>
+          <option>Orange Money</option>
+          <option>MTN MoMo</option>
+          <option>Moov Money</option>
+          <option>Wave</option><option>Telecel Money</option>
+        </select>
+
         <button type="submit">Payer</button>
       </form>
     </section>
-  </main><footer>
-    <p>&copy; 2025 JB Plateforme Global - Tous droits réservés</p>
+
+  </main>
+
+  <footer>
+    <p>© 2025 JB Plateforme Global - Tous droits réservés</p>
   </footer>
+
 </body>
 </html>
