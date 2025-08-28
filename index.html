@@ -5,10 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JB Plateforme Global - Accueil</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #003366;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 0;
+    }
+    nav ul li {
+      margin: 10px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>JB Plateforme Global</h1>
+
+  <header><h1>JB Plateforme Global</h1>
     <nav>
       <ul>
         <li><a href="index.html">Accueil</a></li>
@@ -16,16 +62,21 @@
         <li><a href="boutique.html">Boutique</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="login.html">Admin</a></li>
+        <li><a href="login.html">Administrateur</a></li>
       </ul>
     </nav>
   </header>
+
   <main>
     <h2>Bienvenue sur la plateforme JB</h2>
-    <p>Votre solution numérique polyvalente.</p>
+    <p>Votre solution numérique polyvalente pour l'Afrique de l'Ouest.</p>
+
+    <a href="abonnement.html" class="btn">Accéder aux abonnements & services</a>
   </main>
+
   <footer>
-    <p>&copy; 2025 JB Plateforme Global</p>
+    <p>&copy; 2025 JB Plateforme Mondiale</p>
   </footer>
+
 </body>
 </html>
