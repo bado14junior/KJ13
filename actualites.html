@@ -1,9 +1,31 @@
-"Inauguration d’un nouvel hôpital à Dakar."
-      ]
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Actualités par pays</title>
+</head>
+<body>
+  <script>
+    const actualites = {
+      "Burkina Faso": ["Inauguration d’un nouvel hôpital à Ouagadougou."],
+      "Côte d'Ivoire": ["Conférence sur le climat à Abidjan."],
+      "Mali": ["Lancement d’un nouveau programme éducatif."],
+      "Niger": ["Forum sur la sécurité régionale à Niamey."],
+      "Sénégal": ["Inauguration d’un nouvel hôpital à Dakar."],
+      "Togo": ["Sommet économique régional à Lomé."],
+      "Bénin": ["Festival culturel international à Cotonou."],
+      "Ghana": ["Salon de l’innovation technologique à Accra."],
+      "Guinée": ["Lancement d’un projet d’énergie solaire à Conakry."],
+      "Cameroun": ["Salon de l’emploi à Yaoundé."],
+      "RDC": ["Mission humanitaire à Kinshasa."],
+      "Gabon": ["Conférence environnementale à Libreville."],
+      "Tchad": ["Campagne de vaccination nationale."],
+      "Algérie": ["Exposition sur l’histoire de l’Afrique à Alger."],
+      "Maroc": ["Lancement d’un programme spatial à Rabat."]
     };
 
-    const selectPays = document.getElementById("pays-select");
-    const contenu = document.getElementById("contenu-actualites");
+    const selectPays = document.getElementById("pays-select");const contenu = document.getElementById("contenu-actualites");
 
     function afficherActualites(pays) {
       const news = actualites[pays] || [];
@@ -14,73 +36,29 @@
       afficherActualites(e.target.value);
     });
 
-    afficherActualites(selectPays.value); // Affichage initial
+    afficherActualites(selectPays.value);
   </script>
 
+  <h2>Actualités par pays</h2>
+  <label for="pays-select">Choisissez un pays :</label>
+  <select id="pays-select">
+    <option>Burkina Faso</option>
+    <option>Côte d'Ivoire</option>
+    <option>Mali</option>
+    <option>Niger</option>
+    <option>Sénégal</option>
+    <option>Togo</option>
+    <option>Bénin</option>
+    <option>Ghana</option>
+    <option>Guinée</option>
+    <option>Cameroun</option>
+    <option>RDC</option>
+    <option>Gabon</option>
+    <option>Tchad</option>
+    <option>Algérie</option>
+    <option>Maroc</option>
+  </select>
+
+  <div id="contenu-actualites"></div>
 </body>
-html
-<h2>Actualités par pays</h2>
-<label for="pays-select">Choisissez un pays :</label>
-<select id="pays-select">
-  <option>Burkina Faso</option>
-  <option>Côte d'Ivoire</option>
-  <option>Mali</option>
-  <option>Niger</option>
-  <option>Sénégal</option>
-  <option>Togo</option>
-  <option>Bénin</option>
-  <option>Ghana</option>
-  <option>Guinée</option>
-  <option>RDC</option>
-  <option>Kenya</option>
-  <option>Afrique du Sud</option>
-  <option>Algérie</option>
-  <option>Maroc</option>
-  <option>Tunisie</option>
-</select>
-
-<div id="contenu-actualites" style="margin-top: 20px;"></div>
-<body>
-  <section id="news">
-    <h2>Actualités internationales</h2>
-    <!-- Exemple flux d'actualité simple via RSS Google News -->
-    <iframe
-      src="https://news.google.com/news/embed?hl=fr&gl=FR&ceid=FR:fr"
-      width="100%" height="400" frameborder="0" scrolling="yes">
-    </iframe>
-  </section>
-  <!-- Le reste de ta page -->
-</body>
-<script>
-  const actualites = {
-    "Burkina Faso": ["Inauguration d’un nouvel hôpital à Ouagadougou."],
-    "Côte d'Ivoire": ["Lancement d’un programme d'éducation numérique."],
-    "Mali": ["Séminaire sur la paix et la sécurité à Bamako."],
-    "Niger": ["Développement de l'agriculture durable."],
-    "Sénégal": ["Inauguration d’un nouvel hôpital à Dakar."],
-    "Togo": ["Projet de réhabilitation des routes."],"Bénin": ["Campagne de vaccination nationale lancée."],
-    "Ghana": ["Forum sur les énergies renouvelables."],
-    "Guinée": ["Nouvelles mesures pour l’éducation."],
-    "RDC": ["Lutte contre la déforestation intensifiée."],
-    "Kenya": ["Tech Summit 2025 à Nairobi."],
-    "Afrique du Sud": ["Conférence sur l’emploi des jeunes."],
-    "Algérie": ["Exposition internationale d’art."],
-    "Maroc": ["Investissements dans les transports."],
-    "Tunisie": ["Programme de tourisme durable."]
-  };
-
-  const selectPays = document.getElementById("pays-select");
-  const contenu = document.getElementById("contenu-actualites");
-
-  function afficherActualites(pays) {
-    const news = actualites[pays] || [];
-    contenu.innerHTML = news.map(item => `<p>${item}</p>`).join("");
-  }
-
-  selectPays.addEventListener("change", (e) => {
-    afficherActualites(e.target.value);
-  });
-
-  // Affichage initial
-  afficherActualites(selectPays.value);
-</script>
+</html>
