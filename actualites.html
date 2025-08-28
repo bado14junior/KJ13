@@ -1,64 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>Actualités par pays</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <script>
-    const actualites = {
-      "Burkina Faso": ["Inauguration d’un nouvel hôpital à Ouagadougou."],
-      "Côte d'Ivoire": ["Conférence sur le climat à Abidjan."],
-      "Mali": ["Lancement d’un nouveau programme éducatif."],
-      "Niger": ["Forum sur la sécurité régionale à Niamey."],
-      "Sénégal": ["Inauguration d’un nouvel hôpital à Dakar."],
-      "Togo": ["Sommet économique régional à Lomé."],
-      "Bénin": ["Festival culturel international à Cotonou."],
-      "Ghana": ["Salon de l’innovation technologique à Accra."],
-      "Guinée": ["Lancement d’un projet d’énergie solaire à Conakry."],
-      "Cameroun": ["Salon de l’emploi à Yaoundé."],
-      "RDC": ["Mission humanitaire à Kinshasa."],
-      "Gabon": ["Conférence environnementale à Libreville."],
-      "Tchad": ["Campagne de vaccination nationale."],
-      "Algérie": ["Exposition sur l’histoire de l’Afrique à Alger."],
-      "Maroc": ["Lancement d’un programme spatial à Rabat."]
-    };
+  <header>
+    <h1>Actualités par pays</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+    </nav>
+  </header>
 
-    const selectPays = document.getElementById("pays-select");const contenu = document.getElementById("contenu-actualites");
+  <main>
+    <ul>
+      <li><a href="articles/burkina.html">Burkina Faso</a></li>
+      <li><a href="articles/cote-divoire.html">Côte d'Ivoire</a></li>
+      <li><a href="articles/senegal.html">Sénégal</a></li>
+      <li><a href="articles/mali.html">Mali</a></li>
+      <li><a href="articles/nigeria.html">Nigeria</a></li>
+      <li><a href="articles/ghana.html">Ghana</a></li>
+      <li><a href="articles/guinee.html">Guinée</a></li>
+      <li><a href="articles/liberia.html">Liberia</a></li>
+      <li><a href="articles/mauritanie.html">Mauritanie</a></li>
+      <li><a href="articles/capvert.html">Cap-Vert</a></li>
+      <li><a href="articles/serralione.html">Sierra Leone</a></li>
+      <li><a href="articles/gambie.html">Gambie</a></li>
+      <li><a href="articles/togo.html">Togo</a></li><li><a href="articles/benin.html">Bénin</a></li>
+      <li><a href="articles/niger.html">Niger</a></li>
+    </ul>
+  </main>
 
-    function afficherActualites(pays) {
-      const news = actualites[pays] || [];
-      contenu.innerHTML = news.map(item => `<p>${item}</p>`).join("");
-    }
-
-    selectPays.addEventListener("change", (e) => {
-      afficherActualites(e.target.value);
-    });
-
-    afficherActualites(selectPays.value);
-  </script>
-
-  <h2>Actualités par pays</h2>
-  <label for="pays-select">Choisissez un pays :</label>
-  <select id="pays-select">
-    <option>Burkina Faso</option>
-    <option>Côte d'Ivoire</option>
-    <option>Mali</option>
-    <option>Niger</option>
-    <option>Sénégal</option>
-    <option>Togo</option>
-    <option>Bénin</option>
-    <option>Ghana</option>
-    <option>Guinée</option>
-    <option>Cameroun</option>
-    <option>RDC</option>
-    <option>Gabon</option>
-    <option>Tchad</option>
-    <option>Algérie</option>
-    <option>Maroc</option>
-  </select>
-
-  <div id="contenu-actualites"></div>
+  <footer>
+    <p>&copy; 2025 JB Plateforme Global</p>
+  </footer>
 </body>
 </html>
