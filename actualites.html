@@ -1,39 +1,92 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Actualités par pays</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualités - JB Plateforme</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #0066cc;
+    }
+    select {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #news div {
+      background: white;
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    h3 {
+      margin: 0 0 5px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Actualités par pays</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-    </nav>
-  </header>
+  <h1>Actualités par Pays</h1>
 
-  <main>
-    <ul>
-      <li><a href="articles/burkina.html">Burkina Faso</a></li>
-      <li><a href="articles/cote-divoire.html">Côte d'Ivoire</a></li>
-      <li><a href="articles/senegal.html">Sénégal</a></li>
-      <li><a href="articles/mali.html">Mali</a></li>
-      <li><a href="articles/nigeria.html">Nigeria</a></li>
-      <li><a href="articles/ghana.html">Ghana</a></li>
-      <li><a href="articles/guinee.html">Guinée</a></li>
-      <li><a href="articles/liberia.html">Liberia</a></li>
-      <li><a href="articles/mauritanie.html">Mauritanie</a></li>
-      <li><a href="articles/capvert.html">Cap-Vert</a></li>
-      <li><a href="articles/serralione.html">Sierra Leone</a></li>
-      <li><a href="articles/gambie.html">Gambie</a></li>
-      <li><a href="articles/togo.html">Togo</a></li><li><a href="articles/benin.html">Bénin</a></li>
-      <li><a href="articles/niger.html">Niger</a></li>
-    </ul>
-  </main>
+  <label for="country">Choisissez un pays :</label>
+  <select id="country">
+    <option value="fr">🇫🇷 France</option>
+    <option value="us">🇺🇸 USA</option>
+    <option value="ci">🇨🇮 Côte d'Ivoire</option>
+    <option value="ng">🇳🇬 Nigéria</option>
+    <option value="de">🇩🇪 Allemagne</option>
+  </select><div id="news">Chargement des actualités...</div>
 
-  <footer>
-    <p>&copy; 2025 JB Plateforme Global</p>
-  </footer>
+  <script>
+    const apiKey = "2ca336339e974e758bc88877a3cb4ac1";
+    const countrySelect = document.getElementById("country");
+    const newsDiv = document.getElementById("news");
+
+    function loadNews(country) {
+      newsDiv.innerHTML = "Chargement des actualités...";
+      fetch(`https://newsapi.org/v2/top-headlines?country=country   apiKey={apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+          newsDiv.innerHTML = "";
+          if (data.articles.length === 0) {
+            newsDiv.innerHTML = "Aucune actualité disponible.";
+            return;
+          }
+          data.articles.forEach(article => {
+            const articleEl = document.createElement("div");
+            articleEl.innerHTML = `
+              <h3>article.title</h3>
+              <p>{article.description || "Pas de description."}</p>
+              <a href="${article.url}" target="_blank">Lire plus</a>
+            `;
+            newsDiv.appendChild(articleEl);
+          });
+        })
+        .catch(error => {
+          newsDiv.innerHTML = "Erreur lors du chargement.";
+          console.error(error);
+        });
+    }
+
+    // Actualités par défaut
+    loadNews(countrySelect.value);countrySelect.addEventListener("change", () => {
+      loadNews(countrySelect.value);
+    });
+  </script>
 </body>
 </html>
