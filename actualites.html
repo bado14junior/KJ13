@@ -1,92 +1,63 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Actualités - JB Plateforme</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualités - JB Plateforme Global</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    h1 {
-      text-align: center;
-      color: #0066cc;
-    }
-    select {
-      display: block;
-      margin: 20px auto;
-      padding: 10px;
-      font-size: 16px;
-    }
-    #news div {
-      background: white;
-      margin: 15px 0;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    h3 {
-      margin: 0 0 5px;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input, select { padding: 8px; margin: 5px 0; width: 100%; max-width: 300px; }
+    .article { border-bottom: 1px solid #ccc; margin-bottom: 15px; padding-bottom: 10px; }
   </style>
 </head>
 <body>
-  <h1>Actualités par Pays</h1>
+  <h1>Actualités par pays & recherche</h1>
 
-  <label for="country">Choisissez un pays :</label>
+  <label for="country">Choisir un pays :</label>
   <select id="country">
-    <option value="fr">🇫🇷 France</option>
-    <option value="us">🇺🇸 USA</option>
-    <option value="ci">🇨🇮 Côte d'Ivoire</option>
-    <option value="ng">🇳🇬 Nigéria</option>
-    <option value="de">🇩🇪 Allemagne</option>
-  </select><div id="news">Chargement des actualités...</div>
+    <option value="fr">France</option>
+    <option value="us">USA</option>
+    <option value="bj">Bénin</option>
+    <option value="ci">Côte d'Ivoire</option>
+  </select>
+
+  <label for="query">Recherche (mot-clé) :</label>
+  <input type="text" id="query" placeholder="Ex: économie, sport, politique">
+
+  <button onclick="loadNews()">Rechercher</button>
+
+  <div id="news"></div>
 
   <script>
     const apiKey = "2ca336339e974e758bc88877a3cb4ac1";
-    const countrySelect = document.getElementById("country");
-    const newsDiv = document.getElementById("news");
 
-    function loadNews(country) {
-      newsDiv.innerHTML = "Chargement des actualités...";
-      fetch(`https://newsapi.org/v2/top-headlines?country=country   apiKey={apiKey}`)
+    function loadNews() {const country = document.getElementById("country").value;
+      const query = document.getElementById("query").value;
+      let url = `https://newsapi.org/v2/top-headlines?country=country   apiKey={apiKey}`;
+      if (query) url += `&q=encodeURIComponent(query)`;
+
+      fetch(url)
         .then(response => response.json())
-        .then(data => {
-          newsDiv.innerHTML = "";
-          if (data.articles.length === 0) {
-            newsDiv.innerHTML = "Aucune actualité disponible.";
+        .then(data => 
+          const newsContainer = document.getElementById("news");
+          newsContainer.innerHTML = "";
+          if (data.articles.length === 0) 
+            newsContainer.innerHTML = "<p>Aucun résultat trouvé.</p>";
             return;
-          }
-          data.articles.forEach(article => {
-            const articleEl = document.createElement("div");
-            articleEl.innerHTML = `
-              <h3>article.title</h3>
-              <p>{article.description || "Pas de description."}</p>
-              <a href="${article.url}" target="_blank">Lire plus</a>
+          
+          data.articles.forEach(article => 
+            const articleDiv = document.createElement("div");
+            articleDiv.className = "article";
+            articleDiv.innerHTML = `
+              <h3>{article.title}</h3>
+              <p>article.description || ""</p>
+              <a href="{article.url}" target="_blank">Lire plus</a>
             `;
-            newsDiv.appendChild(articleEl);
+            newsContainer.appendChild(articleDiv);
           });
         })
-        .catch(error => {
-          newsDiv.innerHTML = "Erreur lors du chargement.";
-          console.error(error);
-        });
+        .catch(err => console.error("Erreur lors du chargement :", err));
     }
-
-    // Actualités par défaut
-    loadNews(countrySelect.value);countrySelect.addEventListener("change", () => {
-      loadNews(countrySelect.value);
-    });
   </script>
 </body>
 </html>
