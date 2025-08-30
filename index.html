@@ -1,42 +1,29 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JB Plateforme Global</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="icons/icon-192.png" />
-  <meta name="theme-color" content="#0066cc" />
-</head>
-<body>
-  <header>
-    <h1>JB Plateforme Global</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="blog.html">Blog</a>
-      <a href="media.html">Média</a>
-      <a href="boutique.html">Boutique</a>
-      <a href="abonnement.html">Abonnement</a>
-      <a href="actualités.html">Actualités</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Connexion</a>
-      <a href="admin.html">Admin</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="services">
-      <h2>Nos Services</h2>
-      <p>Découvrez nos solutions innovantes pour votre business.</p>
-      <ul>
-        <li>Conseil en stratégie digitale</li>
-        <li>Développement web & mobile</li>
-        <li>Marketing digital</li>
+<li>Formation et accompagnement</li>
       </ul>
     </section>
 
-    <section id="contact"><h2>Contactez-nous</h2>
+    <section>
+      <h2>Dernières Actualités</h2>
+      <p>Consultez notre page <a href="actualités.html">Actualités</a> pour rester informé.</p>
+    </section>
+
+    <section>
+      <h2>Blog</h2>
+      <p>Lisez nos articles sur les tendances du numérique sur la page <a href="blog.html">Blog</a>.</p>
+    </section>
+
+    <section>
+      <h2>Media</h2>
+      <p>Accédez à nos vidéos et podcasts sur la page <a href="media.html">Média</a>.</p>
+    </section>
+
+    <section>
+      <h2>Boutique</h2>
+      <p>Explorez nos produits dans la <a href="boutique.html">Boutique</a>.</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
       <form id="contactForm">
         <label for="name">Nom :</label>
         <input type="text" id="name" name="name" required />
@@ -54,11 +41,49 @@
   </main>
 
   <footer>
-    <p>© 2025 JB Plateforme Global</p>
+    <p>© 2025 JB Plateforme Global. Tous droits réservés.</p>
   </footer>
 
   <script>
-    if ('serviceWorker' in navigator) {
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JB Plateforme Global</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <meta name="theme-color" content="#0066cc" />
+</head>
+<body>
+  <header>
+    <h1>JB Plateforme Global</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="service.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="media.html">Média</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="actualités.html">Actualités</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Connexion</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Bienvenue sur JB Plateforme Global</h2>
+      <p>Une plateforme multifonctionnelle dédiée à l'innovation numérique.</p>
+    </section>
+
+    <section>
+      <h2>Nos Services</h2>
+      <ul>
+        <li>Conseil en stratégie digitale</li>
+        <li>Développement web et mobile</li>
+        <li>Marketing numérique</li>if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('service-worker.js')
         .then(() => console.log('✅ Service Worker enregistré'))
