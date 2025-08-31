@@ -2,44 +2,50 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blog - JB Plateforme Global</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Blog JB Plateforme Global</h1>
     <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="boutique.html">Boutique</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
-        <li><a href="media.html">Médias</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="admin.html">Admin</a></li>
-      </ul>
+      <a href="index.html">Accueil</a> | 
+      <a href="blog.html">Blog</a>
     </nav>
+    <h1>Bienvenue sur le Blog</h1>
   </header>
 
   <main>
-    <section>
-      <h2>Actualités & Articles</h2>
-      <article>
-        <h3>Bienvenue sur notre blog !</h3>
-        <p>Découvrez les dernières nouveautés, conseils et infos internationales.</p>
-      </article>
-      <!-- Ajoute ici d'autres articles -->
+    <section id="articles-container">
+      <!-- Les articles seront chargés ici -->
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 JB Plateforme Global - Tous droits réservés.</p>
-    <div class="socials">
-      <a href="#">Facebook</a> |
-      <a href="#">WhatsApp</a> |<a href="#">Instagram</a> |
-      <a href="#">Twitter</a>
-    </div>
+    <p>© 2025 JB Plateforme Global</p>
   </footer>
+
+  <script>
+    // Chargement des articles depuis articles.json
+    fetch('articles.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('articles-container');
+        data.forEach(article => {
+          const div = document.createElement('div');
+          div.className = 'article';
+          div.innerHTML = `
+            <h2>article.titre</h2>
+            <p>{article.contenu}</p>
+            <small>Publié le ${article.date}</small>
+            <hr />
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(err => {document.getElementById('articles-container').innerText = "Impossible de charger les articles.";
+        console.error(err);
+      });
+  </script>
 </body>
 </html>
