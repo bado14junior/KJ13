@@ -1,0 +1,17 @@
+
+[
+  {
+    "titre": "Premier article de blog",
+    "auteur": "Junior KING",
+    "date": "2025-08-30",
+    "image": "https://via.placeholder.com/400x200",
+    "contenu": "Ceci est le contenu de l’article de blog. Il peut être long ou court."
+  },
+  {
+    "titre": "Deuxième article",
+    "auteur": "Admin",
+    "date": "2025-08-28",
+    "image": "https://via.placeholder.com/400x200",
+    "contenu": "Un autre article avec du contenu intéressant."
+  }
+]
