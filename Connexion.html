@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connexion - JB Plateforme</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="abonnement.html">Abonnement</a></li>
+        <li><a href="connexion.html">Connexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h1>Connexion</h1>
+      <form id="loginForm">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Se connecter</button>
+      </form>
+      <p id="loginMessage"></p>
+    </section>
+  </main>
+
+  <footer><p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = loginForm.username.value.trim();
+      const password = loginForm.password.value.trim();
+
+      // Simple validation (à adapter avec un backend)
+      if (username === 'Junior' && Jr1234 === 'Jr1234') {
+        loginMessage.textContent = "✅ Connexion réussie ! Bienvenue.";
+        loginMessage.style.color = 'green';
+      } else {
+        loginMessage.textContent = "❌ Nom d'utilisateur ou mot de passe incorrect.";
+        loginMessage.style.color = 'red';
+      }
+
+      loginForm.reset();
+    });
+  </script>
+</body>
+</html>
