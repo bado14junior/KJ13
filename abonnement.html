@@ -1,67 +1,25 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abonnement - JB Plateforme</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="actualites.html">Actualités</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="abonnement.html">Abonnement</a></li>
-      </ul>
-    </nav>
-  </header>
+<h2>Abonnement TV / Streaming</h2>
+<form>
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" name="nom" required>
 
-  <main>
-    <section>
-      <h1>S'abonner à JB Plateforme</h1>
-      <p>Choisissez un forfait pour accéder à tous les services :</p>
+  <label for="tel">Numéro de téléphone :</label>
+  <input type="tel" id="tel" name="tel" required>
 
-      <form id="abonnementForm">
-        <label for="plan">Type d'abonnement :</label>
-        <select id="plan" name="plan" required>
-          <option value="">-- Choisissez --</option>
-          <option value="mensuel">Mensuel - 5€</option><option value="annuel">Annuel - 50€</option>
-        </select>
+  <label for="service">Choisir un service :</label>
+  <select id="service" name="service">
+    <option>Canal+</option>
+    <option>Netflix</option>
+    <option>Prime Video</option>
+    <option>Startimes</option>
+  </select>
 
-        <label for="email">Votre Email :</label>
-        <input type="email" id="email" name="email" required />
+  <label for="duree">Durée :</label>
+  <select id="duree" name="duree">
+    <option>1 mois</option>
+    <option>3 mois</option>
+    <option>6 mois</option>
+  </select>
 
-        <button type="submit">Procéder au paiement</button>
-      </form>
-
-      <p id="paymentMessage"></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
-  </footer>
-
-  <script>
-    const form = document.getElementById('abonnementForm');
-    const msg = document.getElementById('paymentMessage');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const plan = form.plan.value;
-      const email = form.email.value;
-
-      if (plan && email) {
-        msg.textContent = "✅ Paiement simulé avec succès pour le plan " + plan + ".";
-        form.reset();
-      } else {
-        msg.textContent = "❌ Veuillez remplir tous les champs.";
-      }
-    });
-  </script>
-</body>
-</html>
+  <button type="submit">Valider l'abonnement</button>
+</form>
