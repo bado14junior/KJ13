@@ -1,56 +1,89 @@
-<h2>Abonnement TV / Streaming</h2>
-<form>
-  <label for="nom">Nom :</label>
-  <input type="text" id="nom" name="nom" required>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abonnement TV / Streaming - JB Plateforme Global</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f2f5;
+    }
+    h2 {
+      color: #222;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .radio-group div {
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body><h2>Abonnement TV / Streaming</h2>
+  <form id="form-abonnement">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required />
 
-  <label for="tel">Numéro de téléphone :</label>
-  <input type="tel" id="tel" name="tel" required>
+    <label for="tel">Numéro de téléphone :</label>
+    <input type="tel" id="tel" name="tel" required />
 
-  <label for="service">Choisir un service :</label>
-  <select id="service" name="service">
-    <option>Canal+</option>
-    <option>Netflix</option>
-    <option>Prime Video</option>
-    <option>Startimes</option>
-  </select>
+    <label for="service">Choisir un service :</label>
+    <select id="service" name="service" required>
+      <option value="">--Sélectionnez--</option>
+      <option value="canalplus">Canal+</option>
+      <option value="disneyplus">Disney+</option>
+      <option value="netflix">Netflix</option>
+    </select>
 
-  <label for="duree">Durée :</label>
-  <select id="duree" name="duree">
-    <option>1 mois</option>
-    <option>3 mois</option>
-    <option>6 mois</option>
-  </select>
+    <label>Durée d’abonnement :</label>
+    <div class="radio-group">
+      <div><input type="radio" id="1mois" name="duree" value="1mois" checked /> <label for="1mois">1 mois</label></div>
+      <div><input type="radio" id="3mois" name="duree" value="3mois" /> <label for="3mois">3 mois</label></div>
+      <div><input type="radio" id="6mois" name="duree" value="6mois" /> <label for="6mois">6 mois</label></div>
+    </div>
 
-  <button type="submit">Valider l'abonnement</button>
-</form>
-<h2>Abonnement TV / Streaming</h2>
-<form>
-  <label for="nom">Nom :</label>
-  <input type="text" id="nom" name="nom" required>
+    <button type="submit">Valider l’abonnement</button>
+  </form>
 
-  <label for="tel">Numéro de téléphone :</label>
-  <input type="tel" id="tel" name="tel" required>
+  <script>
+    const form = document.getElementById('form-abonnement');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Merci, votre abonnement a bien été pris en compte !');
+      form.reset();});
+  </script>
 
-  <label for="service">Choisir un service :</label>
-  <select id="service" name="service" required>
-    <option value="canalplus">Canal+</option>
-    <option value="disneyplus">Disney+</option>
-    <option value="netflix">Netflix</option>
-  </select>
-
-  <label>Durée d’abonnement :</label>
-  <div>
-    <input type="radio" id="1mois" name="duree" value="1mois" checked>
-    <label for="1mois">1 mois</label>
-  </div>
-  <div>
-    <input type="radio" id="3mois" name="duree" value="3mois">
-    <label for="3mois">3 mois</label>
-  </div>
-  <div>
-    <input type="radio" id="6mois" name="duree" value="6mois">
-    <label for="6mois">6 mois</label>
-  </div>
-
-  <button type="submit">Valider l’abonnement</button>
-</form>
+</body>
+</html>
