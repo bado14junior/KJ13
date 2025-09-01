@@ -3,27 +3,69 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Media - JB Plateforme Global</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Médias - Junior Badolo Plateforme Global</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
-    h1 { color: #333; }
-    .gallery { display: flex; gap: 15px; margin-top: 20px; }
-    .gallery img { width: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-    video { display: block; margin-top: 30px; max-width: 100%; border-radius: 8px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .media-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    video, audio, img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+    .media-item {
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    p.caption {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #666;
+    }
   </style>
 </head>
 <body>
-  <h1>Media - JB Plateforme Global</h1>
-  
-  <div class="gallery">
-    <img src="https://picsum.photos/id/1015/400/300" alt="Image 1" />
-    <img src="https://picsum.photos/id/1016/400/300" alt="Image 2" />
-    <img src="https://picsum.photos/id/1018/400/300" alt="Image 3" />
+
+  <h2>Médias - Junior Badolo Plateforme Global</h2>
+
+  <div class="media-section">
+
+    <div class="media-item">
+      <video controls>
+        <source src="videos/exemple1.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video><p class="caption">Vidéo de présentation</p>
+    </div>
+
+    <div class="media-item">
+      <audio controls>
+        <source src="audios/exemple1.mp3" type="audio/mpeg" />
+        Votre navigateur ne supporte pas la lecture audio.
+      </audio>
+      <p class="caption">Podcast du mois</p>
+    </div>
+
+    <div class="media-item">
+      <img src="images/exemple1.jpg" alt="Affiche événement" />
+      <p class="caption">Affiche promotionnelle</p>
+    </div>
+
   </div>
-  
-  <video controls>
-    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-    Votre navigateur ne supporte pas la lecture vidéo.
-  </video>
+
 </body>
 </html>
