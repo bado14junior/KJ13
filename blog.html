@@ -1,51 +1,44 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blog - JB Plateforme Global</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - JB Plateforme</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <nav>
-      <a href="index.html">Accueil</a> | 
-      <a href="blog.html">Blog</a>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </nav>
-    <h1>Bienvenue sur le Blog</h1>
   </header>
 
   <main>
-    <section id="articles-container">
-      <!-- Les articles seront chargés ici -->
+    <section>
+      <h1>Bienvenue sur notre Blog</h1>
+      <p>Découvrez nos articles, conseils et actualités sur la plateforme JB.</p>
+
+      <article>
+        <h2>Premier article</h2>
+        <p>Contenu de l'article...</p>
+      </article>
+
+      <article>
+        <h2>Deuxième article</h2>
+        <p>Contenu de l'article...</p>
+      </article>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 JB Plateforme Global</p>
+    <p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
   </footer>
-
-  <script>
-    // Chargement des articles depuis articles.json
-    fetch('articles.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('articles-container');
-        data.forEach(article => {
-          const div = document.createElement('div');
-          div.className = 'article';
-          div.innerHTML = `
-            <h2>article.titre</h2>
-            <p>{article.contenu}</p>
-            <small>Publié le ${article.date}</small>
-            <hr />
-          `;
-          container.appendChild(div);
-        });
-      })
-      .catch(err => {document.getElementById('articles-container').innerText = "Impossible de charger les articles.";
-        console.error(err);
-      });
-  </script>
 </body>
 </html>
