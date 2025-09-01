@@ -3,210 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abonnements & Services - JB Plateforme Global</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-    }
-    header {
-      background: #222;
-      color: #fff;
-      padding: 1em;
-      text-align: center;
-    }
-    nav {
-      background: #333;
-      padding: 0.5em;
-      text-align: center;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-    main {
-      padding: 2em;
-    }
-    section {
-      background: #fff;
-      padding: 1.5em;
-      margin-bottom: 2em;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 1em;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 0.5em;margin-top: 0.5em;
-    }
-    button {
-      background: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 1em;
-      margin-top: 2em;
-    }
-  </style>
+  <title>Abonnement - JB Plateforme</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <header>
-    <h1>JB Plateforme Global</h1>
-    <p>Abonnements, Services & Paiements</p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="abonnement.html">Abonnement</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <a href="index.html">Accueil</a>
-    <a href="boutique.html">Boutique</a>
-    <a href="actualites.html">Actualités</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
   <main>
-
-    <!-- Abonnement Section -->
     <section>
-      <h2>Abonnement TV / Streaming</h2>
-      <form>
-        <label>Nom :</label>
-        <input type="text" required>
+      <h1>S'abonner à JB Plateforme</h1>
+      <p>Choisissez un forfait pour accéder à tous les services :</p>
 
-        <label>Numéro de téléphone :</label>
-        <input type="tel" required>
-
-        <label>Choisir un service :</label>
-        <select required>
-          <option>Canal+</option>
-          <option>Netflix</option>
-          <option>YouTube Premium</option>
-          <option>Amazon Prime</option>
+      <form id="abonnementForm">
+        <label for="plan">Type d'abonnement :</label>
+        <select id="plan" name="plan" required>
+          <option value="">-- Choisissez --</option>
+          <option value="mensuel">Mensuel - 5€</option><option value="annuel">Annuel - 50€</option>
         </select>
 
-        <label>Durée :</label>
-        <select required>
-          <option>1 mois</option>
-          <option>3 mois</option>
-          <option>6 mois</option></select>
+        <label for="email">Votre Email :</label>
+        <input type="email" id="email" name="email" required />
 
-        <label>Mode de paiement :</label>
-        <select required>
-          <option>Orange Money</option>
-          <option>MTN Mobile Money</option>
-          <option>Moov Money</option>
-          <option>Wave</option>
-          <option>Telecel Money</option>
-        </select>
-
-        <button type="submit">S’abonner</button>
+        <button type="submit">Procéder au paiement</button>
       </form>
+
+      <p id="paymentMessage"></p>
     </section>
-
-    <!-- Recharge Section -->
-    <section>
-      <h2>Recharge & Achat d’unités</h2>
-      <form>
-        <label>Numéro à recharger :</label>
-        <input type="tel" required>
-
-        <label>Montant :</label>
-        <input type="number" required>
-
-        <label>Opérateur :</label>
-        <select required>
-          <option>Orange</option>
-          <option>MTN</option>
-          <option>Moov</option>
-          <option>Telecel</option>
-        </select>
-
-        <label>Mode de paiement :</label>
-        <select required>
-          <option>Orange Money</option>
-          <option>MTN MoMo</option>
-          <option>Moov Money</option>
-          <option>Wave</option>
-          <option>Telecel Money</option>
-        </select>
-
-        <button type="submit">Recharger</button>
-      </form>
-    </section>
-
-    <!-- Dépôt / Transfert -->
-    <section>
-      <h2>Transfert & Dépôt d'argent</h2>
-      <form><label>Nom du destinataire :</label>
-        <input type="text" required>
-
-        <label>Numéro du destinataire :</label>
-        <input type="tel" required>
-
-        <label>Montant à transférer :</label>
-        <input type="number" required>
-
-        <label>Mode de paiement :</label>
-        <select required>
-          <option>Orange Money</option>
-          <option>MTN MoMo</option>
-          <option>Moov Money</option>
-          <option>Wave</option>
-          <option>Telecel Money</option>
-        </select>
-
-        <button type="submit">Transférer</button>
-      </form>
-    </section>
-
-    <!-- Paiement Factures -->
-    <section>
-      <h2>Paiement de factures</h2>
-      <form>
-        <label>Type de facture :</label>
-        <select required>
-          <option>ONEA</option>
-          <option>SONABEL</option>
-          <option>Loyer</option>
-          <option>Frais de scolarité</option>
-        </select>
-
-        <label>Référence client :</label>
-        <input type="text" required>
-
-        <label>Montant :</label>
-        <input type="number" required>
-
-        <label>Mode de paiement :</label>
-        <select required>
-          <option>Orange Money</option>
-          <option>MTN MoMo</option>
-          <option>Moov Money</option>
-          <option>Wave</option><option>Telecel Money</option>
-        </select>
-
-        <button type="submit">Payer</button>
-      </form>
-    </section>
-
   </main>
 
   <footer>
-    <p>© 2025 JB Plateforme Global - Tous droits réservés</p>
+    <p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
   </footer>
 
+  <script>
+    const form = document.getElementById('abonnementForm');
+    const msg = document.getElementById('paymentMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const plan = form.plan.value;
+      const email = form.email.value;
+
+      if (plan && email) {
+        msg.textContent = "✅ Paiement simulé avec succès pour le plan " + plan + ".";
+        form.reset();
+      } else {
+        msg.textContent = "❌ Veuillez remplir tous les champs.";
+      }
+    });
+  </script>
 </body>
 </html>
