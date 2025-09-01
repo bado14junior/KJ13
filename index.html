@@ -1,29 +1,63 @@
-<li>Formation et accompagnement</li>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JB Plateforme Global</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="icons/icon-192.png" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>JB Plateforme Global</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#actualites">Actualités</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Ouvrir menu">&#9776;</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="accueil" class="hero">
+      <h2>Bienvenue sur JB Plateforme Global</h2>
+      <p>Votre partenaire digital pour réussir vos projets.</p>
+    </section><section id="services">
+      <h2>Nos Services</h2>
+      <ul>
+        <li>Conseil en stratégie digitale</li>
+        <li>Développement web & mobile</li>
+        <li>Marketing digital</li>
+        <li>Formation et support</li>
       </ul>
     </section>
 
-    <section>
-      <h2>Dernières Actualités</h2>
-      <p>Consultez notre page <a href="actualités.html">Actualités</a> pour rester informé.</p>
-    </section>
-
-    <section>
+    <section id="blog">
       <h2>Blog</h2>
-      <p>Lisez nos articles sur les tendances du numérique sur la page <a href="blog.html">Blog</a>.</p>
+      <p>Nos dernières actualités et conseils.</p>
+      <!-- Exemple d'article -->
+      <article>
+        <h3>5 astuces pour booster votre présence en ligne</h3>
+        <p>Découvrez comment améliorer votre visibilité avec ces conseils simples...</p>
+        <a href="#">Lire plus</a>
+      </article>
     </section>
 
-    <section>
-      <h2>Media</h2>
-      <p>Accédez à nos vidéos et podcasts sur la page <a href="media.html">Média</a>.</p>
+    <section id="actualites">
+      <h2>Actualités</h2>
+      <p>Restez informé des dernières nouvelles.</p>
+      <!-- Ici on pourra ajouter un script JS plus tard -->
     </section>
 
-    <section>
-      <h2>Boutique</h2>
-      <p>Explorez nos produits dans la <a href="boutique.html">Boutique</a>.</p>
-    </section>
-
-    <section>
-      <h2>Contact</h2>
+    <section id="contact">
+      <h2>Contactez-nous</h2>
       <form id="contactForm">
         <label for="name">Nom :</label>
         <input type="text" id="name" name="name" required />
@@ -35,61 +69,24 @@
         <textarea id="message" name="message" rows="4" required></textarea>
 
         <button type="submit">Envoyer</button>
-      </form>
-      <p id="formMessage"></p>
+              </form><p id="formMessage"></p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 JB Plateforme Global. Tous droits réservés.</p>
+    <p>© 2025 JB Plateforme Global</p>
   </footer>
 
   <script>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JB Plateforme Global</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="icons/icon-192.png" />
-  <meta name="theme-color" content="#0066cc" />
-</head>
-<body>
-  <header>
-    <h1>JB Plateforme Global</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="service.html">Services</a>
-      <a href="blog.html">Blog</a>
-      <a href="media.html">Média</a>
-      <a href="boutique.html">Boutique</a>
-      <a href="actualités.html">Actualités</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Connexion</a>
-      <a href="admin.html">Admin</a>
-    </nav>
-  </header>
+    // Menu hamburger toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-  <main>
-    <section>
-      <h2>Bienvenue sur JB Plateforme Global</h2>
-      <p>Une plateforme multifonctionnelle dédiée à l'innovation numérique.</p>
-    </section>
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-open');
+    });
 
-    <section>
-      <h2>Nos Services</h2>
-      <ul>
-        <li>Conseil en stratégie digitale</li>
-        <li>Développement web et mobile</li>
-        <li>Marketing numérique</li>if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('service-worker.js')
-        .then(() => console.log('✅ Service Worker enregistré'))
-        .catch(err => console.error('❌ Erreur Service Worker:', err));
-    }
-
+    // Form submission simple
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
 
@@ -101,3 +98,53 @@
   </script>
 </body>
 </html>
+```
+
+*2. style.css*  
+```css
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: #f0f8ff;
+  color: #003366;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  background: #00509e;
+  color: #fff;
+  padding: 15px 0;
+}
+
+header h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;.nav-links.nav-open {
+    display: flex;
+  }
+  .nav-toggle {
+    display: block;
+  }
+}
