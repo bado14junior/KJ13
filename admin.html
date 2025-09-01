@@ -4,85 +4,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tableau de Bord Admin</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-
-    header {
-      background-color: #333;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    .card {
-      background-color: white;
-      padding: 20px;
-      margin: 10px 0;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      border-radius: 5px;
-    }
-
-    button.logout {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 4px;
-      float: right;
-    }
-
-    button.logout:hover {
-      background-color: #c0392b;
-    }
-  </style>
+  <title>Admin - JB Plateforme</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <script>
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-      window.location.href = "login.html";
-    }
-  </script>
-
   <header>
-    <h1>Bienvenue, Admin</h1><button class="logout" onclick="logout()">Se déconnecter</button>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-    <div class="card">
-      <h2>Statistiques générales</h2>
-      <p>Utilisateurs inscrits : 120</p>
-      <p>Transactions aujourd'hui : 45</p>
-    </div>
+    <section>
+      <h1>Accès Administrateur</h1>
+      <form id="adminLogin">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required />
 
-    <div class="card">
-      <h2>Gérer les contenus</h2>
-      <p>Articles, médias, services à modifier ou publier.</p>
-    </div>
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required />
 
-    <div class="card">
-      <h2>Suivi des paiements</h2>
-      <p>Historique des paiements et abonnements en attente.</p>
-    </div>
+        <button type="submit">Se connecter</button>
+      </form>
+
+      <p id="adminMessage"></p>
+    </section>
   </main>
 
-  <script>
-    function logout() {
-      localStorage.removeItem("isLoggedIn");
-      window.location.href = "login.html";
-    }
-  </script>
+  <footer><p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
+  </footer>
 
+  <script>
+    const adminForm = document.getElementById('adminLogin');
+    const adminMessage = document.getElementById('adminMessage');
+
+    adminForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = adminForm.username.value;
+      const password = adminForm.password.value;
+
+      if (username === 'admin' && password === '1234') {
+        adminMessage.textContent = "✅ Connexion réussie !";
+      } else {
+        adminMessage.textContent = "❌ Identifiants incorrects.";
+      }
+    });
+  </script>
 </body>
 </html>
