@@ -23,3 +23,34 @@
 
   <button type="submit">Valider l'abonnement</button>
 </form>
+<h2>Abonnement TV / Streaming</h2>
+<form>
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" name="nom" required>
+
+  <label for="tel">Numéro de téléphone :</label>
+  <input type="tel" id="tel" name="tel" required>
+
+  <label for="service">Choisir un service :</label>
+  <select id="service" name="service" required>
+    <option value="canalplus">Canal+</option>
+    <option value="disneyplus">Disney+</option>
+    <option value="netflix">Netflix</option>
+  </select>
+
+  <label>Durée d’abonnement :</label>
+  <div>
+    <input type="radio" id="1mois" name="duree" value="1mois" checked>
+    <label for="1mois">1 mois</label>
+  </div>
+  <div>
+    <input type="radio" id="3mois" name="duree" value="3mois">
+    <label for="3mois">3 mois</label>
+  </div>
+  <div>
+    <input type="radio" id="6mois" name="duree" value="6mois">
+    <label for="6mois">6 mois</label>
+  </div>
+
+  <button type="submit">Valider l’abonnement</button>
+</form>
