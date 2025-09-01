@@ -4,97 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JB Plateforme Global</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="icons/icon-192.png" />
+  <style>
+    /* Style basique du menu */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+    }
+    header {
+      background-color: #0066cc;
+      padding: 15px 20px;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: flex;
+      gap: 15px;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+    nav ul li a:hover {
+      background-color: #004a99;
+    }
+    main {
+      padding: 20px;
+    }
+    footer {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>JB Plateforme Global</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#actualites">Actualités</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="nav-toggle" aria-label="Ouvrir menu">&#9776;</button>
-      </nav>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li><li><a href="blog.html">Blog</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="abonnement.html">Abonnement</a></li>
+        <li><a href="connexion.html">Connexion</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="container">
-    <section id="accueil" class="hero">
-      <h2>Bienvenue sur JB Plateforme Global</h2>
-      <p>Votre partenaire digital pour réussir vos projets.</p>
-    </section><section id="services">
-      <h2>Nos Services</h2>
-      <ul>
-        <li>Conseil en stratégie digitale</li>
-        <li>Développement web & mobile</li>
-        <li>Marketing digital</li>
-        <li>Formation et support</li>
-      </ul>
-    </section>
-
-    <section id="blog">
-      <h2>Blog</h2>
-      <p>Nos dernières actualités et conseils.</p>
-      <!-- Exemple d'article -->
-      <article>
-        <h3>5 astuces pour booster votre présence en ligne</h3>
-        <p>Découvrez comment améliorer votre visibilité avec ces conseils simples...</p>
-        <a href="#">Lire plus</a>
-      </article>
-    </section>
-
-    <section id="actualites">
-      <h2>Actualités</h2>
-      <p>Restez informé des dernières nouvelles.</p>
-      <!-- Ici on pourra ajouter un script JS plus tard -->
-    </section>
-
-    <section id="contact">
-      <h2>Contactez-nous</h2>
-      <form id="contactForm">
-        <label for="name">Nom :</label>
-        <input type="text" id="name" name="name" required />
-
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="message">Message :</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-
-        <button type="submit">Envoyer</button>
-              </form><p id="formMessage"></p>
-    </section>
+  <main>
+    <h1>Bienvenue sur JB Plateforme Global</h1>
+    <p>Votre solution pour les services digitaux, actualités, blog, et plus encore.</p>
   </main>
 
   <footer>
-    <p>© 2025 JB Plateforme Global</p>
+    <p>&copy; 2025 JB Plateforme Global. Tous droits réservés.</p>
   </footer>
-
-  <script>
-    // Menu hamburger toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('nav-open');
-    });
-
-    // Form submission simple
-    const form = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      formMessage.textContent = 'Merci pour votre message, nous vous répondrons bientôt !';
-      form.reset();
-    });
-  </script>
 </body>
 </html>
