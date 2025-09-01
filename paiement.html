@@ -1,10 +1,73 @@
-<h2>Recharge & Achat d’unités</h2>
-<form>
-  <label for="numRecharge">Numéro à recharger :</label>
-  <input type="tel" id="numRecharge" name="numRecharge" required>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recharge / Paiement - Junior Badolo Plateforme Global</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h2 {
+      color: #222;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
 
-  <label for="montant">Montant :</label>
-  <input type="number" id="montant" name="montant" required>
+  <h2>Recharge & Paiement Mobile</h2>
+  <form id="form-recharge">
+    <label for="numRecharge">Numéro à recharger :</label><input type="tel" id="numRecharge" name="numRecharge" required />
 
-  <button type="submit">Valider la recharge</button>
-</form>
+    <label for="montant">Montant (FCFA) :</label>
+    <input type="number" id="montant" name="montant" required />
+
+    <button type="submit">Valider la recharge</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('form-recharge');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Recharge validée avec succès !');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
