@@ -1,63 +1,44 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actualites - JB Plateforme Global</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    input, select { padding: 8px; margin: 5px 0; width: 100%; max-width: 300px; }
-    .article { border-bottom: 1px solid #ccc; margin-bottom: 15px; padding-bottom: 10px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualités - JB Plateforme</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Actualites par pays & recherche</h1>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <label for="country">Choisir un pays :</label>
-  <select id="country">
-    <option value="fr">France</option>
-    <option value="us">USA</option>
-    <option value="bj">Bénin</option>
-    <option value="ci">Côte d'Ivoire</option>
-  </select>
+  <main>
+    <section>
+      <h1>Actualités</h1>
+      <p>Voici les dernières nouvelles liées à notre plateforme et au monde numérique :</p>
 
-  <label for="query">Recherche (mot-clé) :</label>
-  <input type="text" id="query" placeholder="Ex: économie, sport, politique">
+      <article>
+        <h2>Nouvelle fonctionnalité disponible</h2>
+        <p>Nous avons lancé une nouvelle option pour améliorer votre expérience utilisateur.</p>
+      </article>
 
-  <button onclick="loadNews()">Rechercher</button>
+      <article>
+        <h2>Partenariat avec une entreprise tech</h2>
+        <p>JB Plateforme annonce un partenariat stratégique pour booster l’innovation.</p>
+      </article>
+    </section>
+  </main>
 
-  <div id="news"></div>
-
-  <script>
-    const apiKey = "2ca336339e974e758bc88877a3cb4ac1";
-
-    function loadNews() {const country = document.getElementById("country").value;
-      const query = document.getElementById("query").value;
-      let url = `https://newsapi.org/v2/top-headlines?country=country   apiKey={apiKey}`;
-      if (query) url += `&q=encodeURIComponent(query)`;
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => 
-          const newsContainer = document.getElementById("news");
-          newsContainer.innerHTML = "";
-          if (data.articles.length === 0) 
-            newsContainer.innerHTML = "<p>Aucun résultat trouvé.</p>";
-            return;
-          
-          data.articles.forEach(article => 
-            const articleDiv = document.createElement("div");
-            articleDiv.className = "article";
-            articleDiv.innerHTML = `
-              <h3>{article.title}</h3>
-              <p>article.description || ""</p>
-              <a href="{article.url}" target="_blank">Lire plus</a>
-            `;
-            newsContainer.appendChild(articleDiv);
-          });
-        })
-        .catch(err => console.error("Erreur lors du chargement :", err));
-    }
-  </script>
+  <footer>
+    <p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
+  </footer>
 </body>
 </html>
