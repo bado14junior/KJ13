@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Messagerie - Junior Badolo Plateforme Global</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      background: #f5f5f5;
+    }
+    .contacts {
+      width: 25%;
+      background: #2c3e50;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+    .contacts-header {
+      padding: 20px;
+      font-size: 1.3rem;
+      border-bottom: 1px solid #34495e;
+      text-align: center;
+    }
+    .contact-list {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    .contact {
+      padding: 15px 20px;
+      border-bottom: 1px solid #34495e;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact:hover, .contact.active {
+      background: #34495e;
+    }
+    .messages {
+      flex-grow: 1;<div class="contacts-header">Contacts</div>
+    <div class="contact-list" id="contactList">
+      <div class="contact active" data-contact="Alice">Alice</div>
+      <div class="contact" data-contact="Bob">Bob</div>
+      <div class="contact" data-contact="Charlie">Charlie</div>
+    </div>
+  </div>
+
+  <div class="messages">
+    <div class="messages-header" id="chatHeader">Alice</div>
+    <div class="message-list" id="messageList">
+      <!-- Messages s'affichent ici -->
+      <div class="message received">Salut !</div>
+      <div class="message sent">Salut Alice, ça va ?</div>
+    </div>
+    <div class="message-input">
+      <textarea id="messageInput" rows="2" placeholder="Écrire un message..."></textarea>
+      <button id="sendBtn">Envoyer</button>
+    </div>
+  </div>
+
+  <script>
+    const contacts = document.querySelectorAll('.contact');
+    const chatHeader = document.getElementById('chatHeader');
+    const messageList = document.getElementById('messageList');
+    const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // Messages simulés par contact
+    const conversations = {
+      'Alice': [
+        { text: 'Salut !', type: 'received' },
+        { text: 'Salut Alice, ça va ?', type: 'sent' }
+      ],display: flex;
+      flex-direction: column;
+      background: white;
+    }
+    .messages-header {
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+    .message-list {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .message {
+      margin-bottom: 15px;
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      clear: both;
+      word-wrap: break-word;
+    }
+    .message.sent {
+      background: #3498db;
+      color: white;
+      float: right;
+      border-bottom-right-radius: 0;
+    }
+    .message.received {
+      background: #ecf0f1;
+      color: #333;
+      float: left;
+      border-bottom-left-radius: 0;
+    }
+    .message-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+    .message-input textarea {
+      flex-grow: 1;
+      padding: 15px;
+      border: none;
+      resize: none;
+      font-size: 1rem;
+    }
+    .message-input button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0 20px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.3s;
+    }
+    .message-input button:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contacts">'Bob': [
+        { text: 'Hey, tu es dispo ?', type: 'received' },
+        { text: 'Oui, je suis là !', type: 'sent' }
+      ],
+      'Charlie': [
+        { text: 'Salut Charlie', type: 'sent' },
+        { text: 'Salut, quoi de neuf ?', type: 'received' }
+      ]
+    };
+
+    let currentContact = 'Alice';
+
+    function renderMessages(contact) {
+      messageList.innerHTML = '';
+      conversations[contact].forEach(msg => {
+        const div = document.createElement('div');
+        div.classList.add('message', msg.type);
+        div.textContent = msg.text;
+        messageList.appendChild(div);
+      });
+      messageList.scrollTop = messageList.scrollHeight;
+    }
+
+    contacts.forEach(contact => {
+      contact.addEventListener('click', () => {
+        contacts.forEach(c => c.classList.remove('active'));
+        contact.classList.add('active');
+        currentContact = contact.dataset.contact;
+        chatHeader.textContent = currentContact;
+        renderMessages(currentContact);
+      });
+    });
+
+    sendBtn.addEventListener('click', () => {
+      const message = messageInput.value.trim();
+      if (message === '') return;
+      // Ajouter message envoyé
+      conversations[currentContact].push({ text: message, type: 'sent' });
+      renderMessages(currentContact);messageInput.value = '';
+
+      // Simuler réponse automatique
+      setTimeout(() => {
+        conversations[currentContact].push({ text: 'Réponse automatique...', type: 'received' });
+        renderMessages(currentContact);
+      }, 1500);
+    });
+
+    // Afficher la conversation par défaut
+    renderMessages(currentContact);
+  </script>
+
+</body>
+</html>
