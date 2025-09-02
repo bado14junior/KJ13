@@ -1,89 +1,136 @@
+Parfait ! Voici le *code HTML complet* avec :
+
+- *Abonnement TV / Streaming*  
+- *Recharge & Achat d’unités*  
+- *Paiement* (formulaire s
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abonnement TV / Streaming - JB Plateforme Global</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abonnement | JB Plateforme Global</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f1f3f6;
+      margin: 0;
       padding: 20px;
-      background-color: #f0f2f5;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+    }
+    .form-section {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h2 {
+      margin-top: 0;
       color: #222;
-    }
-    form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      max-width: 400px;
     }
     label {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
+      margin: 10px 0 5px;
     }
     input, select {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 5px;
+      padding: 10px;
       border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    .radio-group div {
+    .radio-group {
       margin-top: 10px;
     }
-    button {
-      margin-top: 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      font-size: 16px;
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
     }
-    button:hover {
-      background-color: #0056b3;
+    button {
+      background-color: #007bff;
+      color: white;padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 15px;
     }
   </style>
 </head>
-<body><h2>Abonnement TV / Streaming</h2>
-  <form id="form-abonnement">
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" name="nom" required />
+<body>
 
-    <label for="tel">Numéro de téléphone :</label>
-    <input type="tel" id="tel" name="tel" required />
+  <div class="form-container">
 
-    <label for="service">Choisir un service :</label>
-    <select id="service" name="service" required>
-      <option value="">--Sélectionnez--</option>
-      <option value="canalplus">Canal+</option>
-      <option value="disneyplus">Disney+</option>
-      <option value="netflix">Netflix</option>
-    </select>
+    <!-- Abonnement TV / Streaming -->
+    <div class="form-section">
+      <h2>Abonnement TV / Streaming</h2>
+      <label>Nom :</label>
+      <input type="text" placeholder="Votre nom">
 
-    <label>Durée d’abonnement :</label>
-    <div class="radio-group">
-      <div><input type="radio" id="1mois" name="duree" value="1mois" checked /> <label for="1mois">1 mois</label></div>
-      <div><input type="radio" id="3mois" name="duree" value="3mois" /> <label for="3mois">3 mois</label></div>
-      <div><input type="radio" id="6mois" name="duree" value="6mois" /> <label for="6mois">6 mois</label></div>
+      <label>Numéro de téléphone :</label>
+      <input type="tel" placeholder="Ex: 0700000000">
+
+      <label>Choisir un service :</label>
+      <select>
+        <option>--Sélectionnez--</option>
+        <option>Canal+</option>
+        <option>Netflix</option>
+        <option>Amazon Prime</option>
+      </select>
+
+      <label>Durée d’abonnement :</label>
+      <div class="radio-group">
+        <label><input type="radio" name="duree" checked> 1 mois</label>
+        <label><input type="radio" name="duree"> 3 mois</label>
+        <label><input type="radio" name="duree"> 6 mois</label>
+      </div>
+
+      <button>Valider l’abonnement</button>
     </div>
 
-    <button type="submit">Valider l’abonnement</button>
-  </form>
+    <!-- Recharge & Achat d’unités -->
+    <div class="form-section">
+      <h2>Recharge & Achat d’unités</h2>
+      <label>Numéro à recharger :</label>
+      <input type="tel" placeholder="Ex: 0700000000">
 
-  <script>
-    const form = document.getElementById('form-abonnement');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Merci, votre abonnement a bien été pris en compte !');
-      form.reset();});
-  </script>
+      <label>Montant :</label><input type="number" placeholder="Ex: 1000">
+
+      <label>Opérateur :</label>
+      <select>
+        <option>--Sélectionnez--</option>
+        <option>Orange</option>
+        <option>MTN</option>
+        <option>Moov</option>
+      </select>
+
+      <button>Valider la recharge</button>
+    </div>
+
+    <!-- Paiement -->
+    <div class="form-section">
+      <h2>Paiement</h2>
+      <label>Nom du client :</label>
+      <input type="text" placeholder="Votre nom complet">
+
+      <label>Montant à payer :</label>
+      <input type="number" placeholder="Ex: 5000">
+
+      <label>Méthode de paiement :</label>
+      <select>
+        <option>--Sélectionnez--</option>
+        <option>Mobile Money</option>
+        <option>Carte Bancaire</option>
+        <option>PayPal</option>
+      </select>
+
+      <button>Effectuer le paiement</button>
+    </div>
+
+  </div>
 
 </body>
 </html>
