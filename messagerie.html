@@ -1,191 +1,128 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Messagerie - Junior Badolo Plateforme Global</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JB Chat - Plateforme Global</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+    #chat-container {
       display: flex;
+      flex-direction: column;
       height: 100vh;
-      background: #f5f5f5;
     }
-    .contacts {
-      width: 25%;
-      background: #2c3e50;
-      color: white;
-      display: flex;
-      flex-direction: column;
-    }
-    .contacts-header {
-      padding: 20px;
-      font-size: 1.3rem;
-      border-bottom: 1px solid #34495e;
-      text-align: center;
-    }
-    .contact-list {
-      flex-grow: 1;
+    #messages {
+      flex: 1;
+      padding: 10px;
       overflow-y: auto;
-    }
-    .contact {
-      padding: 15px 20px;
-      border-bottom: 1px solid #34495e;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .contact:hover, .contact.active {
-      background: #34495e;
-    }
-    .messages {
-      flex-grow: 1;<div class="contacts-header">Contacts</div>
-    <div class="contact-list" id="contactList">
-      <div class="contact active" data-contact="Alice">Alice</div>
-      <div class="contact" data-contact="Bob">Bob</div>
-      <div class="contact" data-contact="Charlie">Charlie</div>
-    </div>
-  </div>
-
-  <div class="messages">
-    <div class="messages-header" id="chatHeader">Alice</div>
-    <div class="message-list" id="messageList">
-      <!-- Messages s'affichent ici -->
-      <div class="message received">Salut !</div>
-      <div class="message sent">Salut Alice, ça va ?</div>
-    </div>
-    <div class="message-input">
-      <textarea id="messageInput" rows="2" placeholder="Écrire un message..."></textarea>
-      <button id="sendBtn">Envoyer</button>
-    </div>
-  </div>
-
-  <script>
-    const contacts = document.querySelectorAll('.contact');
-    const chatHeader = document.getElementById('chatHeader');
-    const messageList = document.getElementById('messageList');
-    const messageInput = document.getElementById('messageInput');
-    const sendBtn = document.getElementById('sendBtn');
-
-    // Messages simulés par contact
-    const conversations = {
-      'Alice': [
-        { text: 'Salut !', type: 'received' },
-        { text: 'Salut Alice, ça va ?', type: 'sent' }
-      ],display: flex;
-      flex-direction: column;
-      background: white;
-    }
-    .messages-header {
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
-      font-weight: bold;
-    }
-    .message-list {
-      flex-grow: 1;
-      padding: 20px;
-      overflow-y: auto;
+      background: #fff;
+      border-bottom: 1px solid #ccc;
     }
     .message {
-      margin-bottom: 15px;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 8px;
       max-width: 70%;
-      padding: 10px 15px;
-      border-radius: 15px;
-      clear: both;
-      word-wrap: break-word;
     }
-    .message.sent {
-      background: #3498db;
-      color: white;
-      float: right;
-      border-bottom-right-radius: 0;
+    .sent {
+      background-color: #dcf8c6;
+      align-self: flex-end;
     }
-    .message.received {
-      background: #ecf0f1;
-      color: #333;
-      float: left;
-      border-bottom-left-radius: 0;
+    .received {
+      background-color: #eee;
+      align-self: flex-start;
     }
-    .message-input {
+    #input-container {
       display: flex;
-      border-top: 1px solid #ddd;
+      padding: 10px;
+      background: #fff;
     }
-    .message-input textarea {
-      flex-grow: 1;
-      padding: 15px;
-      border: none;
-      resize: none;
-      font-size: 1rem;
+    #message-input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    .message-input button {
-      background: #3498db;
+    #send-button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      background: #2196F3;
       color: white;
-      border: none;
-      padding: 0 20px;
+      border: none;border-radius: 5px;
       cursor: pointer;
-      font-size: 1.1rem;
-      transition: background 0.3s;
-    }
-    .message-input button:hover {
-      background: #2980b9;
     }
   </style>
 </head>
 <body>
 
-  <div class="contacts">'Bob': [
-        { text: 'Hey, tu es dispo ?', type: 'received' },
-        { text: 'Oui, je suis là !', type: 'sent' }
-      ],
-      'Charlie': [
-        { text: 'Salut Charlie', type: 'sent' },
-        { text: 'Salut, quoi de neuf ?', type: 'received' }
-      ]
+  <div id="chat-container">
+    <div id="messages"></div>
+    <div id="input-container">
+      <input type="text" id="message-input" placeholder="Votre message..." />
+      <button id="send-button">Envoyer</button>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+
+  <script>
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyABb6gzWkFDihJOkBGp3CPtAxczCMnOXpQ",
+      authDomain: "jb-plateforme-global.firebaseapp.com",
+      projectId: "jb-plateforme-global",
+      storageBucket: "jb-plateforme-global.appspot.com",
+      messagingSenderId: "951618145797",
+      appId: "1:951618145797:web:730eb317a7372b81cd070a",
+      databaseURL: "https://jb-plateforme-global-default-rtdb.firebaseio.com/"
     };
+    firebase.initializeApp(firebaseConfig);
 
-    let currentContact = 'Alice';
+    // Auth anonyme
+    firebase.auth().signInAnonymously().catch(console.error);
 
-    function renderMessages(contact) {
-      messageList.innerHTML = '';
-      conversations[contact].forEach(msg => {
+    const db = firebase.database();
+    const messagesRef = db.ref('messages');const messagesDiv = document.getElementById('messages');
+    const input = document.getElementById('message-input');
+    const sendBtn = document.getElementById('send-button');
+
+    firebase.auth().onAuthStateChanged(user => {
+      const uid = user.uid;
+
+      sendBtn.addEventListener('click', () => {
+        const text = input.value.trim();
+        if (text !== '') {
+          messagesRef.push({
+            text,
+            sender: uid,
+            timestamp: Date.now()
+          });
+          input.value = '';
+        }
+      });
+
+      messagesRef.on('child_added', snapshot => {
+        const msg = snapshot.val();
         const div = document.createElement('div');
-        div.classList.add('message', msg.type);
+        div.classList.add('message');
+        div.classList.add(msg.sender === uid ? 'sent' : 'received');
         div.textContent = msg.text;
-        messageList.appendChild(div);
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
       });
-      messageList.scrollTop = messageList.scrollHeight;
-    }
 
-    contacts.forEach(contact => {
-      contact.addEventListener('click', () => {
-        contacts.forEach(c => c.classList.remove('active'));
-        contact.classList.add('active');
-        currentContact = contact.dataset.contact;
-        chatHeader.textContent = currentContact;
-        renderMessages(currentContact);
+      input.addEventListener('keypress', e => {
+        if (e.key === 'Enter') sendBtn.click();
       });
     });
-
-    sendBtn.addEventListener('click', () => {
-      const message = messageInput.value.trim();
-      if (message === '') return;
-      // Ajouter message envoyé
-      conversations[currentContact].push({ text: message, type: 'sent' });
-      renderMessages(currentContact);messageInput.value = '';
-
-      // Simuler réponse automatique
-      setTimeout(() => {
-        conversations[currentContact].push({ text: 'Réponse automatique...', type: 'received' });
-        renderMessages(currentContact);
-      }, 1500);
-    });
-
-    // Afficher la conversation par défaut
-    renderMessages(currentContact);
   </script>
-
 </body>
 </html>
