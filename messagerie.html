@@ -3,125 +3,60 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JB Chat - Plateforme Global</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messagerie - JB Plateforme</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-    }
-    #chat-container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-    #messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      background: #fff;
-      border-bottom: 1px solid #ccc;
-    }
-    .message {
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 8px;
-      max-width: 70%;
-    }
-    .sent {
-      background-color: #dcf8c6;
-      align-self: flex-end;
-    }
-    .received {
-      background-color: #eee;
-      align-self: flex-start;
-    }
-    #input-container {
-      display: flex;
-      padding: 10px;
-      background: #fff;
-    }
-    #message-input {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    #send-button {
-      margin-left: 10px;
-      padding: 10px 15px;
-      background: #2196F3;
-      color: white;
-      border: none;border-radius: 5px;
-      cursor: pointer;
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #messages { max-height: 400px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+    .message { margin-bottom: 10px; }
+    input, button { padding: 10px; font-size: 16px; }
   </style>
 </head>
 <body>
+  <h1>Messagerie</h1>
 
-  <div id="chat-container">
-    <div id="messages"></div>
-    <div id="input-container">
-      <input type="text" id="message-input" placeholder="Votre message..." />
-      <button id="send-button">Envoyer</button>
-    </div>
-  </div>
+  <div id="messages"></div>
+
+  <input type="text" id="messageInput" placeholder="Votre message..." />
+  <button onclick="sendMessage()">Envoyer</button>
 
   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+  <script type="module">
+    // Import depuis Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 
-  <script>
-    // Configuration Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyABb6gzWkFDihJOkBGp3CPtAxczCMnOXpQ",
+    // 🔥 Configuration Firebase de ton projetconst firebaseConfig = {
+      apiKey: "AIzaSyBbkxs-YdWui8fVusH6OQvVrp7Mz7ADl7g",
       authDomain: "jb-plateforme-global.firebaseapp.com",
       projectId: "jb-plateforme-global",
       storageBucket: "jb-plateforme-global.appspot.com",
-      messagingSenderId: "951618145797",
-      appId: "1:951618145797:web:730eb317a7372b81cd070a",
-      databaseURL: "https://jb-plateforme-global-default-rtdb.firebaseio.com/"
+      messagingSenderId: "877337046664",
+      appId: "1:877337046664:web:63aa66b6cfad2f98b19c91"
     };
-    firebase.initializeApp(firebaseConfig);
 
-    // Auth anonyme
-    firebase.auth().signInAnonymously().catch(console.error);
+    // Initialisation Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-    const db = firebase.database();
-    const messagesRef = db.ref('messages');const messagesDiv = document.getElementById('messages');
-    const input = document.getElementById('message-input');
-    const sendBtn = document.getElementById('send-button');
+    const messagesRef = ref(db, 'messages');
 
-    firebase.auth().onAuthStateChanged(user => {
-      const uid = user.uid;
+    // Envoi d'un message
+    window.sendMessage = () => {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+      if (message) {
+        push(messagesRef, { text: message });
+        input.value = '';
+      }
+    };
 
-      sendBtn.addEventListener('click', () => {
-        const text = input.value.trim();
-        if (text !== '') {
-          messagesRef.push({
-            text,
-            sender: uid,
-            timestamp: Date.now()
-          });
-          input.value = '';
-        }
-      });
-
-      messagesRef.on('child_added', snapshot => {
-        const msg = snapshot.val();
-        const div = document.createElement('div');
-        div.classList.add('message');
-        div.classList.add(msg.sender === uid ? 'sent' : 'received');
-        div.textContent = msg.text;
-        messagesDiv.appendChild(div);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-      });
-
-      input.addEventListener('keypress', e => {
-        if (e.key === 'Enter') sendBtn.click();
-      });
+    // Affichage des messages
+    onChildAdded(messagesRef, (data) => {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message';
+      messageDiv.textContent = data.val().text;
+      document.getElementById('messages').appendChild(messageDiv);
     });
   </script>
 </body>
