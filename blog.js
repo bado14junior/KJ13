@@ -1,5 +1,5 @@
 
-fetch('articles.json')
+fetch('https://raw.githubusercontent.com/bado14junior/KJ13/main/articles.json')
   .then(response => response.json())
   .then(data => {
     const container = document.getElementById('blog-container');
@@ -16,5 +16,6 @@ fetch('articles.json')
     });
   })
   .catch(error => {
-    console.error('Erreur chargement articles:', error);
+    console.error('Erreur chargement articles:', error);document.getElementById('blog-container').innerHTML = "<p>Impossible de charger les articles.</p>";
   });
+```
