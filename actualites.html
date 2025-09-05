@@ -1,75 +1,98 @@
-
+ JUNIOR BADOLO 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Actualités - JB Plateforme Global</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualités par Pays</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h1 { color: #0066cc; }
-    select { padding: 8px; font-size: 16px; margin-bottom: 20px; }
-    .article { margin-bottom: 20px; }
-    .article h3 { margin: 5px 0; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #0066cc;
+    }
+    select {
+      padding: 5px;
+      font-size: 16px;
+    }
+    .article {
+      margin-bottom: 20px;
+    }
+    .article h3 {
+      margin: 0;
+    }
+    .article p {
+      margin: 5px 0;
+    }
   </style>
 </head>
 <body>
-
   <h1>Actualités par Pays</h1>
-
   <label for="pays">Choisissez un pays :</label>
   <select id="pays">
-    <option value="fr">France</option>
+    <option value="bj">Bénin</option>
     <option value="bf">Burkina Faso</option>
     <option value="ci">Côte d'Ivoire</option>
-    <option value="sn">Sénégal</option>
+    <option value="ga">Gabon</option>
+    <option value="gn">Guinée</option>
     <option value="ml">Mali</option>
-    <option value="ng">Nigéria</option>
-    <option value="gh">Ghana</option>
     <option value="ne">Niger</option>
+    <option value="sn">Sénégal</option>
     <option value="tg">Togo</option>
     <option value="cm">Cameroun</option>
-    <option value="td">Tchad</option>
-    <option value="dz">Algérie</option>
-    <option value="ma">Maroc</option><option value="gn">Guinée</option>
-    <option value="cd">RD Congo</option>
+    <option value="cd">RDC</option>
+    <option value="cg">Congo</option><option value="td">Tchad</option>
+    <option value="cf">Centrafrique</option>
+    <option value="mg">Madagascar</option>
   </select>
 
-  <div id="actualites"></div>
+  <div id="actualites">Chargement des actualités...</div>
 
   <script>
-    const select = document.getElementById("pays");
+    const apiKey = "2ca336339e974e758bc88877a3cb4ac1"; // Ta clé NewsAPI
+    const selectPays = document.getElementById("pays");
     const container = document.getElementById("actualites");
 
-    select.addEventListener("change", function () {
-      const country = select.value;
-      const apiKey = "2ca336339e974e758bc88877a3cb4ac1";
+    function chargerActualites(codePays) {
+      container.innerHTML = "Chargement des actualités...";
+      const url = `https://newsapi.org/v2/top-headlines?country=codePays   apiKey={apiKey}`;
+      const proxyUrl = `https://api.allorigins.win/get?url=encodeURIComponent(url)`;
 
-      fetch(`https://newsapi.org/v2/top-headlines?country=country   apiKey={apiKey}`)
-        .then(res => res.json())
-        .then(data => {
-          let html = "";
-          data.articles.forEach(article => {
-            html += `
-              <div class="article">
-                <h3>article.title</h3>
-                <p>{article.description || ""}</p>
-                <a href="${article.url}" target="_blank">Lire plus</a>
-              </div>
+      fetch(proxyUrl)
+        .then(response => response.json())
+        .then(data => 
+          const articles = JSON.parse(data.contents).articles;
+          container.innerHTML = "";
+
+          if (!articles.length) 
+            container.innerHTML = "Aucune actualité trouvée.";
+            return;
+          
+
+          articles.forEach(article => 
+            const div = document.createElement("div");
+            div.classList.add("article");
+            div.innerHTML = `
+              <h3>{article.title}</h3>
+              <p>article.description || ""</p><a href="{article.url}" target="_blank">Lire l'article</a>
             `;
+            container.appendChild(div);
           });
-          container.innerHTML = html || "Aucune actualité trouvée pour ce pays.";
         })
-        .catch(() => {
-          container.innerHTML = "Erreur de chargement des actualités.";
+        .catch(err => {
+          console.error(err);
+          container.innerText = "Erreur de chargement des actualités.";
         });
-    });
+    }
 
-    // Charger par défaut le premier pays
-    window.addEventListener("load", () => {
-      select.dispatchEvent(new Event("change"));
+    // Chargement initial
+    chargerActualites(selectPays.value);
+
+    // Au changement de pays
+    selectPays.addEventListener("change", () => {
+      chargerActualites(selectPays.value);
     });
   </script>
-
 </body>
 </html>
