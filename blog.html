@@ -3,42 +3,36 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog - JB Plateforme</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog - JB Plateforme Global</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
+    <h1>Blog JB Plateforme Global</h1>
     <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="actualites.html">Actualités</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <a href="index.html">Accueil</a>
+      <a href="actualites.html">Actualités</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main>
     <section>
-      <h1>Bienvenue sur notre Blog</h1>
-      <p>Découvrez nos articles, conseils et actualités sur la plateforme JB.</p>
-
-      <article>
-        <h2>Premier article</h2>
-        <p>Contenu de l'article...</p>
-      </article>
-
-      <article>
-        <h2>Deuxième article</h2>
-        <p>Contenu de l'article...</p>
-      </article>
+      <h2>Nos derniers articles</h2>
+      <div id="liste-articles" class="articles-container">
+        <!-- Les articles s'affichent ici -->
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
+    <p>© 2025 JB Plateforme Global</p>
   </footer>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="blog.js"></script>
 </body>
 </html>
+4. Dans Firebase > Firestore, ajoute des articles (titre, contenu, date)
