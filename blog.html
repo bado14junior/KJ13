@@ -42,29 +42,3 @@
   </footer>
 </body>
 </html>
-const firebaseConfig = {
-  apiKey: "TA_CLE_API",authDomain: "TON_DOMAINE.firebaseapp.com",
-  projectId: "TON_ID",
-  storageBucket: "TON_ID.appspot.com",
-  messagingSenderId: "TON_SENDER_ID",
-  appId: "TON_APP_ID"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-const blogContainer = document.getElementById('blog-container');
-db.collection("articles").orderBy("date", "desc").get().then(snapshot => {
-  snapshot.forEach(doc => {
-    const article = doc.data();
-    const articleElement = document.createElement('div');
-    articleElement.innerHTML = `
-      <h2>article.titre</h2>
-      <p><strong>Auteur :</strong>{article.auteur}</p>
-      <p><strong>Date :</strong> new Date(article.date).toLocaleString()</p>
-      <p>{article.contenu}</p>
-      <hr>
-    `;
-    blogContainer.appendChild(articleElement);
-  });
-});
