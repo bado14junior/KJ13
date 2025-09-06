@@ -1,38 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Ajouter un article</title>
-  <style>
-    input, textarea { width: 100%; margin: 10px 0; padding: 8px; }
-    button { padding: 10px; }
-    pre { background: #f0f0f0; padding: 10px; }
-  </style>
 </head>
 <body>
-  <h1>Ajouter un article (manuel)</h1>
+  <h1>Ajouter un article</h1>
   <form id="articleForm">
-    <input type="text" id="titre" placeholder="Titre" required />
-    <input type="text" id="auteur" placeholder="Auteur" required />
-    <input type="date" id="date" required />
-    <input type="url" id="image" placeholder="URL de l'image" required />
-    <textarea id="contenu" rows="5" placeholder="Contenu" required></textarea>
-    <button type="submit">Générer l’article</button>
+    <input type="text" id="titre" placeholder="Titre" required><br>
+    <input type="text" id="auteur" placeholder="Auteur" required><br>
+    <textarea id="contenu" placeholder="Contenu" required></textarea><br>
+    <button type="submit">Publier</button>
   </form>
 
-  <h3>Résultat JSON (à copier dans articles.json) :</h3>
-  <pre id="output"></pre>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
-  <script>document.getElementById('articleForm').addEventListener('submit', function(e) {
+  <script>// Configuration Firebase (REMPLACE avec tes infos)
+    const firebaseConfig = {
+      apiKey: "TA_CLE_API",
+      authDomain: "TON_DOMAINE.firebaseapp.com",
+      projectId: "TON_ID",
+      storageBucket: "TON_ID.appspot.com",
+      messagingSenderId: "TON_SENDER_ID",
+      appId: "TON_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const form = document.getElementById('articleForm');
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const article = {
-        titre: document.getElementById('titre').value,
-        auteur: document.getElementById('auteur').value,
-        date: document.getElementById('date').value,
-        image: document.getElementById('image').value,
-        contenu: document.getElementById('contenu').value
-      };
-      document.getElementById('output').textContent = JSON.stringify(article, null, 2);
+      const titre = document.getElementById('titre').value;
+      const auteur = document.getElementById('auteur').value;
+      const contenu = document.getElementById('contenu').value;
+
+      try {
+        await db.collection("articles").add({
+          titre,
+          auteur,
+          contenu,
+          date: new Date().toISOString()
+        });
+        alert("Article publié !");
+        form.reset();
+      } catch (err) {
+        alert("Erreur lors de la publication !");
+        console.error(err);
+      }
     });
   </script>
 </body>
