@@ -1,21 +1,46 @@
 
-fetch('https://raw.githubusercontent.com/bado14junior/KJ13/main/articles.json')
-  .then(response => response.json())
-  .then(data => {
-    const container = document.getElementById('blog-container');
-    data.forEach(article => {
-      const div = document.createElement('div');
-      div.classList.add('article');
-      div.innerHTML = `
-        <h2>article.titre</h2>
-        <p><strong>Par:</strong>{article.auteur} | <em>article.date</em></p>
-        <p>{article.contenu}</p>
-        <hr/>
+// Import Firebase
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+
+// Configuration Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyABb6gzWkFDihJOkBG_KVga9PuLgZfuo8o",
+  authDomain: "jb-plateforme-global.firebaseapp.com",
+  projectId: "jb-plateforme-global",
+  storageBucket: "jb-plateforme-global.appspot.com",
+  messagingSenderId: "951618145795",
+  appId: "1:951618145795:web:c9556e044ab8cb221e4836"
+};
+
+// Initialiser Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Fonction pour afficher les articles
+async function chargerArticles() {
+  const liste = document.getElementById("liste-articles");
+  liste.innerHTML = "<p>Chargement...</p>";
+
+  try {
+    const querySnapshot = await getDocs(collection(db, "articles"));
+    let html = "";
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      html += `
+        <div class="article">
+          <h3>data.titre</h3>
+          <p>{data.contenu}</p>
+          <small>${new Date(data.date.seconds * 1000).toLocaleString()}</small>
+        </div>
       `;
-      container.appendChild(div);
-    });
-  })
-  .catch(error => {
-    console.error('Erreur chargement articles:', error);document.getElementById('blog-container').innerHTML = "<p>Impossible de charger les articles.</p>";
-  });
+    });liste.innerHTML = html || "<p>Aucun article trouvé.</p>";
+  } catch (e) {
+    liste.innerHTML = "<p>Erreur lors du chargement des articles.</p>";
+    console.error(e);
+  }
+}
+
+// Appeler la fonction au chargement
+window.addEventListener("DOMContentLoaded", chargerArticles);
 ```
