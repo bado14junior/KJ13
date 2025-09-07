@@ -1,42 +1,91 @@
-Junior Badolo Platforms Global 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paramètres - JB Plateforme</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Paramètres | JB Plateforme Global</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .parametre-section {
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select, button {
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Paramètres</h1>
-        <nav>
-            <a href="index.html">Accueil</a>
-            <a href="services.html">Services</a>
-            <a href="media.html">Médias</a>
-            <a href="blog.html">Blog</a>
-            <a href="parametres.html">Paramètres</a>
-        </nav>
-    </header>
 
-    <main>
-        <section>
-            <h2>Gérer votre compte</h2>
-            <form>
-                <label for="username">Nom d'utilisateur :</label>
-                <input type="text" id="username" name="username" placeholder="Votre nom">
+  <h1>Paramètres</h1>
 
-                <label for="email">Adresse email :</label>
-                <input type="email" id="email" name="email" placeholder="exemple@mail.com">
+  <div class="parametre-section">
+    <label for="language">Langue</label>
+    <select id="language">
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+    </select>
+  </div>
 
-                <label for="password">Nouveau mot de passe :</label>
-                <input type="password" id="password" name="password"><button type="submit">Mettre à jour</button>
-            </form>
-        </section>
-    </main>
+  <div class="parametre-section">
+    <label for="theme">Thème</label>
+    <select id="theme"><option value="light">Clair</option>
+      <option value="dark">Sombre</option>
+    </select>
+  </div>
 
-    <footer>
-        <p>© 2025 JB Plateforme Global. Tous droits réservés.</p>
-    </footer>
+  <script>
+    // Charger les paramètres enregistrés
+    window.onload = function () {
+      const lang = localStorage.getItem("language") || "fr";
+      const theme = localStorage.getItem("theme") || "light";
+
+      document.getElementById("language").value = lang;
+      document.getElementById("theme").value = theme;
+
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+
+    // Enregistrement de la langue
+    document.getElementById("language").addEventListener("change", function () {
+      const selectedLang = this.value;
+      localStorage.setItem("language", selectedLang);
+      alert("Langue enregistrée : " + selectedLang);
+    });
+
+    // Enregistrement du thème
+    document.getElementById("theme").addEventListener("change", function () {
+      const selectedTheme = this.value;
+      localStorage.setItem("theme", selectedTheme);
+
+      if (selectedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    });
+  </script>
+
 </body>
 </html>
