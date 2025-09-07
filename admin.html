@@ -1,60 +1,72 @@
-     Junior Badolo
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - JB Plateforme</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin - JB Plateforme Global</title>
+<style>
+  body {
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    display: flex;
+    min-height: 100vh;
+  }
+  nav {
+    width: 220px;
+    background-color: #1e40af;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  nav h2 {
+    margin-top: 0;
+  }
+  nav ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  nav ul li {
+    margin: 15px 0;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+  main {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  header {
+    background-color: #2563eb;
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.5rem;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Connexion Admin</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="media.html">Médias</a>
-      <a href="abonnement.html">Abonnement</a>
-      <a href="paiement.html">Paiement</a>
-    </nav>
-  </header>
-
+  <nav>
+    <h2>Admin Menu</h2>
+    <ul>
+      <li><a href="admin.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li><a href="articles.html">Articles</a></li><li><a href="boutique.html">Boutique</a></li>
+      <li><a href="parametres.html">Paramètres</a></li>
+      <li><a href="deconnexion.html">Déconnexion</a></li>
+    </ul>
+  </nav>
   <main>
+    <header>Bienvenue, Admin</header>
     <section>
-      <form id="adminLoginForm">
-        <label for="username">Nom d’utilisateur :</label>
-        <input type="text" id="username" name="username" required />
-
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required />
-
-        <button type="submit">Se connecter</button>
-      </form>
-      <p id="loginMessage"></p>
+      <h3>Tableau de bord</h3>
+      <p>Gérez ici votre plateforme : articles, boutique, paramètres, et utilisateurs.</p>
+      <!-- Tu peux ajouter ici des widgets, stats, etc. -->
     </section>
   </main>
-
-  <footer>
-    <p>&copy; 2025 JB Plateforme</p>
-  </footer>
-
-  <script>
-    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const username = document.getElementById('username').value;const password = document.getElementById('password').value;
-      const message = document.getElementById('loginMessage');
-
-      if (username === 'Junior' && password === 'Jr1234') {
-        message.style.color = 'green';
-        message.textContent = 'Connexion réussie. Redirection...';
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 1500);
-      } else {
-        message.style.color = 'red';
-        message.textContent = 'Nom d’utilisateur ou mot de passe incorrect.';
-      }
-    });
-  </script>
 </body>
 </html>
