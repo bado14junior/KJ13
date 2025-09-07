@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Articles en attente</title>
+</head>
+<body>
+  <h2>Articles en attente de validation</h2>
+  <div id="pendingList"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyABb6gzWkFDihJOkBG_KVga9PuLgZfuo8o",
+      authDomain: "jb-plateforme-global.firebaseapp.com",
+      projectId: "jb-plateforme-global",
+      storageBucket: "jb-plateforme-global.appspot.com",
+      messagingSenderId: "951618145795",
+      appId: "1:951618145795:web:c9556e044ab8cb221e4836"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const pendingList = document.getElementById('pendingList');
+
+    async function loadPending() {
+      const snapshot = await db.collection('articles_en_attente').where('status', '==', 'pending').get();
+      pendingList.innerHTML = '';
+      if (snapshot.empty) {
+        pendingList.innerHTML = '<p>Aucun article en attente.</p>';
+        return;
+      }
+      snapshot.forEach(doc => {
+        const art = doc.data();
+        const div = document.createElement('div');
+        div.style.border = "1px solid #ccc";
+        div.style.margin = "10px";
+        div.style.padding = "10px";
+        div.innerHTML = `
+          <h3>art.title</h3>
+          <p>{art.content}</p>
+          <small>Par ${art.author}</small><br><br><button onclick="approve('{doc.id}')">Approuver</button>
+          <button onclick="reject('${doc.id}')">Rejeter</button>
+        `;
+        pendingList.appendChild(div);
+      });
+    }
+
+    async function approve(id) {
+      const docRef = db.collection('articles_en_attente').doc(id);
+      const docSnap = await docRef.get();
+      if (docSnap.exists) {
+        const data = docSnap.data();
+        await db.collection('articles').add({
+          ...data,
+          status: 'approved',
+          approvedAt: new Date()
+        });
+        await docRef.delete();
+        loadPending();
+        alert('Article approuvé !');
+      }
+    }
+
+    async function reject(id) {
+      await db.collection('articles_en_attente').doc(id).delete();
+      loadPending();
+      alert('Article rejeté !');
+    }
+
+    loadPending();
+  </script>
+</body>
+</html>
