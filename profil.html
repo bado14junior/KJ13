@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Profil - JB Plateforme Global</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #007bff;
+    }
+
+    h1 {
+      font-size: 22px;
+      color: #333;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img id="photo" src="default.png" alt="Photo de profil" class="profile-img">
+    <h1 id="nom">Nom</h1>
+    <p><strong>Email :</strong> <span id="email">email@example.com</span></p>
+
+    <button onclick="modifierProfil()">Modifier le profil</button><br><br>
+    <button onclick="logout()">Se déconnecter</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const utilisateur = JSON.parse(localStorage.getItem('utilisateurConnecte'));
+
+      if (utilisateur) {
+        document.getElementById('nom').textContent = utilisateur.nom || "Nom inconnu";
+        document.getElementById('email').textContent = utilisateur.email || "Non défini";
+        document.getElementById('photo').src = utilisateur.photo || "default.png";
+      } else {
+        alert("Vous devez être connecté !");
+        window.location.href = "connexion.html";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem('utilisateurConnecte');
+      window.location.href = "connexion.html";
+    }
+
+    function modifierProfil() {
+      alert("Fonction de modification bientôt disponible !");// Tu peux rediriger vers une autre page ou afficher un formulaire
+    }
+  </script>
+
+</body>
+</html>
