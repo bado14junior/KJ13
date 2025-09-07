@@ -3,18 +3,17 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Paramètres | JB Plateforme Global</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paramètres</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       padding: 20px;
-      transition: background-color 0.3s, color 0.3s;
+      background-color: #f9f9f9;
     }
 
-    .dark-mode {
-      background-color: #121212;
-      color: #fff;
+    h1 {
+      font-size: 28px;
     }
 
     .parametre-section {
@@ -23,69 +22,90 @@
 
     label {
       display: block;
-      margin-bottom: 5px;
+      margin-top: 15px;
     }
 
     select, button {
-      padding: 10px;
+      padding: 8px;
+      margin-top: 5px;
       width: 100%;
       max-width: 300px;
-      margin-bottom: 10px;
+    }
+
+    button {
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* Thème sombre */
+    body.dark {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    body.dark select, body.dark button {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
     }
   </style>
 </head>
 <body>
-
   <h1>Paramètres</h1>
 
   <div class="parametre-section">
-    <label for="language">Langue</label>
-    <select id="language">
-      <option value="fr">Français</option>
+    <label for="langue">Langue</label>
+    <select id="langue"><option value="fr">Français</option>
       <option value="en">English</option>
     </select>
-  </div>
 
-  <div class="parametre-section">
     <label for="theme">Thème</label>
-    <select id="theme"><option value="light">Clair</option>
+    <select id="theme">
+      <option value="light">Clair</option>
       <option value="dark">Sombre</option>
     </select>
   </div>
 
+  <div class="parametre-section">
+    <h2>Gérer le compte</h2>
+    <button onclick="window.location.href='connexion.html'">Connexion</button>
+    <button onclick="window.location.href='profil.html'">Mon Profil</button>
+    <button onclick="deconnexion()">Déconnexion</button>
+  </div>
+
   <script>
-    // Charger les paramètres enregistrés
+    const langueSelect = document.getElementById('langue');
+    const themeSelect = document.getElementById('theme');
+
+    // Charger préférences
     window.onload = function () {
-      const lang = localStorage.getItem("language") || "fr";
-      const theme = localStorage.getItem("theme") || "light";
+      const langue = localStorage.getItem('langue') || 'fr';
+      const theme = localStorage.getItem('theme') || 'light';
 
-      document.getElementById("language").value = lang;
-      document.getElementById("theme").value = theme;
+      langueSelect.value = langue;
+      themeSelect.value = theme;
 
-      if (theme === "dark") {
-        document.body.classList.add("dark-mode");
-      }
+      appliquerTheme(theme);
     };
 
-    // Enregistrement de la langue
-    document.getElementById("language").addEventListener("change", function () {
-      const selectedLang = this.value;
-      localStorage.setItem("language", selectedLang);
-      alert("Langue enregistrée : " + selectedLang);
+    // Enregistrer automatiquement
+    langueSelect.addEventListener('change', () => {
+      localStorage.setItem('langue', langueSelect.value);
     });
 
-    // Enregistrement du thème
-    document.getElementById("theme").addEventListener("change", function () {
-      const selectedTheme = this.value;
-      localStorage.setItem("theme", selectedTheme);
+    themeSelect.addEventListener('change', () => {
+      const theme = themeSelect.value;
+      localStorage.setItem('theme', theme);
+      appliquerTheme(theme);});
 
-      if (selectedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-      } else {
-        document.body.classList.remove("dark-mode");
-      }
-    });
+    function appliquerTheme(theme) {
+      document.body.classList.toggle('dark', theme === 'dark');
+    }
+
+    function deconnexion() {
+      alert("Déconnecté !");
+      // Tu pourras intégrer Firebase Auth ici plus tard
+    }
   </script>
-
 </body>
 </html>
