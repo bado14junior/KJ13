@@ -1,60 +1,63 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique - JB Plateforme Global</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<title>Boutique</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+<style>
+  .product { border: 1px solid #ccc; padding: 10px; margin: 10px; }
+  .product img { max-width: 150px; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Boutique JB Plateforme Global</h1>
-  </header>
 
-  <nav>
-    <a href="index.html">Accueil</a>
-    <a href="services.html">Services</a>
-    <a href="blog.html">Blog</a>
-    <a href="media.html">Médias</a>
-    <a href="contact.html">Contact</a>
-    <a href="admin.html">Admin</a>
-  </nav>
+<h1>Ma Boutique</h1>
+<div id="products-container"></div>
 
-  <div class="container">
-    <h2>Nos Produits</h2>
+<script>
+  // Config Firebase (remplace avec ta config)
+  const firebaseConfig = {
+    apiKey: "TON_API_KEY",
+    authDomain: "TON_AUTH_DOMAIN",
+    projectId: "TON_PROJECT_ID",
+  };
 
-    <div class="product">
-      <h3>Abonnement Canal+</h3>
-      <p>Prix : 10 000 FCFA</p>
-      <button>Commander</button>
-    </div>
+  // Initialiser Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-    <div class="product">
-      <h3>Recharge Orange</h3>
-      <p>Prix : Variable</p>
-      <button>Commander</button>
-    </div>
+  // Fonction pour afficher les produits approuvés
+  function displayProducts() {
+    const container = document.getElementById('products-container');
+    container.innerHTML = '<p>Chargement...</p>';
 
-    <div class="product">
-      <h3>Forfait Internet Moov</h3>
-      <p>Prix : 1 000 FCFA</p>
-      <button>Commander</button>
-    </div>
+    db.collection('produits').where('approuve', '==', true).get()
+      .then((querySnapshot) => {
+        container.innerHTML = ''; // vide pendant affichagequerySnapshot.forEach((doc) => {
+          const product = doc.data();
+          const productHTML = `
+            <div class="product">
+              <h3>product.nom</h3>
+              <img src="{product.imageUrl}" alt="product.nom" />
+              <p>{product.description}</p>
+              <strong>Prix : product.prix FCFA</strong>
+            </div>
+          `;
+          container.innerHTML += productHTML;
+        );
+        if(querySnapshot.empty) 
+          container.innerHTML = '<p>Aucun produit disponible.</p>';
+        )
+      .catch(error => 
+        container.innerHTML = `<p>Erreur lors du chargement :{error.message}</p>`;
+      });
+  }
 
-    <div class="product">
-      <h3>Netflix - 1 Mois</h3>
-      <p>Prix : 5 000 FCFA</p>
-      <button>Commander</button>
-    </div><p>NB : Tous les paiements peuvent être faits via mobile money.</p>
-  </div>
+  // Charger produits au démarrage
+  displayProducts();
+</script>
 
-  <footer>
-    <p>&copy; 2025 JB Plateforme Global</p>
-    <div class="social-links">
-      <a href="#">Facebook</a>
-      <a href="#">WhatsApp</a>
-      <a href="#">YouTube</a>
-    </div>
-  </footer>
 </body>
 </html>
