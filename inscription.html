@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inscription - JB Plateforme</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+    }
+
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background-color: #003366;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #003366;
+      color: white;
+      position: fixed;
+      top: 0; bottom: 0; left: 0;
+      padding-top: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {background-color: #0059b3;
+    }
+
+    .main {
+      margin-left: 220px;
+      padding: 80px 20px 20px 20px;
+      flex: 1;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .main {
+        margin-left: 0;
+        padding-top: 80px;
+      }
+      .menu-btn {
+        display: block;
+      }
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0059b3;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head><body>
+
+  <div class="header">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h2 style="margin-left: 10px;">JB Plateforme</h2>
+  </div>
+
+  <nav class="sidebar" id="sidebar">
+    <a href="index.html">Accueil</a>
+    <a href="connexion.html">Connexion</a>
+    <a href="inscription.html" style="background-color: #0059b3;">Inscription</a>
+    <a href="profil.html">Profil</a>
+    <a href="boutique.html">Boutique</a>
+    <a href="abonnement.html">Abonnement</a>
+    <a href="messagerie.html">Messagerie</a>
+    <a href="blog.html">Blog</a>
+    <a href="parametres.html">Paramètres</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+
+  <main class="main">
+    <div class="form-container">
+      <h2>Créer un compte</h2>
+      <form id="signupForm">
+        <input type="text" id="name" placeholder="Nom complet" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Mot de passe" required minlength="6" />
+        <button type="submit">S'inscrire</button>
+      </form>
+      <div class="error" id="errorMsg"></div>
+      <div class="success" id="successMsg"></div>
+    </div>
+  </main>
+
+  <!-- Firebase App (the core Firebase SDK) --><script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    // Your Firebase configuration object (remplace par ta config)
+    const firebaseConfig = {
+      apiKey: "AIzaSyABb6gzWkFDihJOkBG_KVga9PuLgZfuo8o",
+      authDomain: "jb-plateforme-global.firebaseapp.com",
+      projectId: "jb-plateforme-global",
+      storageBucket: "jb-plateforme-global.appspot.com",
+      messagingSenderId: "951618145795",
+      appId: "1:951618145795:web:c9556e044ab8cb221e4836"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    const signupForm = document.getElementById('signupForm');
+    const errorMsg = document.getElementById('errorMsg');
+    const successMsg = document.getElementById('successMsg');
+
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      errorMsg.textContent = '';
+      successMsg.textContent = '';
+
+      const name = document.getElementById('name').value.trim();const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if(password.length < 6) {
+        errorMsg.textContent = "Le mot de passe doit contenir au moins 6 caractères.";
+        return;
+      }
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+
+          // Mettre à jour le profil avec le nom complet
+          user.updateProfile({ displayName: name }).then(() => {
+            successMsg.textContent = `Bienvenue ${name} ! Votre compte a été créé.`;
+            signupForm.reset();
+          }).catch((error) => {
+            errorMsg.textContent = error.message;
+          });
+        })
+        .catch((error) => {
+          errorMsg.textContent = error.message;
+        });
+    });
+  </script>
+</body>
+</html>
