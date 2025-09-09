@@ -1,98 +1,158 @@
- JUNIOR BADOLO 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Actualités par Pays</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    h1 {
-      color: #0066cc;
-    }
-    select {
-      padding: 5px;
-      font-size: 16px;
-    }
-    .article {
-      margin-bottom: 20px;
-    }
-    .article h3 {
-      margin: 0;
-    }
-    .article p {
-      margin: 5px 0;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Actualités - JB Plateforme Global</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 </head>
 <body>
-  <h1>Actualités par Pays</h1>
-  <label for="pays">Choisissez un pays :</label>
-  <select id="pays">
-    <option value="bj">Bénin</option>
-    <option value="bf">Burkina Faso</option>
-    <option value="ci">Côte d'Ivoire</option>
-    <option value="ga">Gabon</option>
-    <option value="gn">Guinée</option>
-    <option value="ml">Mali</option>
-    <option value="ne">Niger</option>
-    <option value="sn">Sénégal</option>
-    <option value="tg">Togo</option>
-    <option value="cm">Cameroun</option>
-    <option value="cd">RDC</option>
-    <option value="cg">Congo</option><option value="td">Tchad</option>
-    <option value="cf">Centrafrique</option>
-    <option value="mg">Madagascar</option>
-  </select>
 
-  <div id="actualites">Chargement des actualités...</div>
+  <!-- MENU LATÉRAL GAUCHE -->
+  <aside class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="abonnement.html">Abonnement</a></li>
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="actualites.html" class="active">Actualités</a></li>
+      <li><a href="connexion.html">Connexion</a></li>
+      <li><a href="inscription.html">Inscription</a></li>
+      <li><a href="parametres.html">Paramètres</a></li>
+    </ul>
+  </aside>
 
-  <script>
-    const apiKey = "2ca336339e974e758bc88877a3cb4ac1"; // Ta clé NewsAPI
-    const selectPays = document.getElementById("pays");
-    const container = document.getElementById("actualites");
+  <!-- CONTENU PRINCIPAL -->
+  <main class="content">
+    <h1>Actualités</h1><!-- Actualités automatiques -->
+    <section id="auto-actus">
+      <h2>Actualités des pays</h2>
+      <select id="countrySelector">
+        <option value="Burkina Faso">Burkina Faso</option>
+        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+        <option value="Mali">Mali</option>
+        <option value="Togo">Togo</option>
+        <option value="Niger">Niger</option>
+        <option value="Bénin">Bénin</option>
+        <option value="Sénégal">Sénégal</option>
+        <!-- Ajoute les autres pays -->
+      </select>
+      <div id="autoNewsContainer"></div>
+    </section>
 
-    function chargerActualites(codePays) {
-      container.innerHTML = "Chargement des actualités...";
-      const url = `https://newsapi.org/v2/top-headlines?country=codePays   apiKey={apiKey}`;
-      const proxyUrl = `https://api.allorigins.win/get?url=encodeURIComponent(url)`;
+    <!-- Actualités manuelles (Firebase) -->
+    <section id="manual-actus">
+      <h2>Publications JB</h2>
+      <div id="manualNewsContainer"></div>
+    </section>
+  </main>
 
-      fetch(proxyUrl)
-        .then(response => response.json())
-        .then(data => 
-          const articles = JSON.parse(data.contents).articles;
-          container.innerHTML = "";
+  <script type="module">
+    // Firebase config
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-          if (!articles.length) 
-            container.innerHTML = "Aucune actualité trouvée.";
-            return;
-          
+    const firebaseConfig = {
+      apiKey: "AIzaSyABb6gzWkFDihJOkBG_KVga9PuLgZfuo8o",
+      authDomain: "jb-plateforme-global.firebaseapp.com",
+      projectId: "jb-plateforme-global",
+      storageBucket: "jb-plateforme-global.appspot.com",messagingSenderId: "951618145795",
+      appId: "1:951618145795:web:c9556e044ab8cb221e4836"
+    };
 
-          articles.forEach(article => 
-            const div = document.createElement("div");
-            div.classList.add("article");
-            div.innerHTML = `
-              <h3>{article.title}</h3>
-              <p>article.description || ""</p><a href="{article.url}" target="_blank">Lire l'article</a>
-            `;
-            container.appendChild(div);
-          });
-        })
-        .catch(err => {
-          console.error(err);
-          container.innerText = "Erreur de chargement des actualités.";
-        });
-    }
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-    // Chargement initial
-    chargerActualites(selectPays.value);
+    // Récupérer actualités depuis Firestore
+    async function fetchManualNews() {
+      const querySnapshot = await getDocs(collection(db, "actualites"));
+      let html = "";
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        html += `
+          <div class="news-item">
+            <h3>data.titre</h3>
+            <p>{data.contenu}</p>
+            <small>Publié le data.date</small>
+          </div>
+        `;
+      );
+      document.getElementById("manualNewsContainer").innerHTML = html;
+    
 
-    // Au changement de pays
-    selectPays.addEventListener("change", () => {
-      chargerActualites(selectPays.value);
+    fetchManualNews();
+
+    // Actualités depuis fichier JSON
+    async function loadAutoNews(pays) 
+      const res = await fetch("articles.json");
+      const data = await res.json();
+      const filtered = data.articles.filter(a => a.pays === pays);
+      let html = "";
+      filtered.forEach(article => 
+        html += `
+          <div class="news-item">
+            <h3>{article.titre}</h3>
+            <p>article.contenu</p>
+            <small>{article.date}</small>
+          </div>
+        `;
+      });
+      document.getElementById("autoNewsContainer").innerHTML = html;}
+
+    document.getElementById("countrySelector").addEventListener("change", (e) => {
+      loadAutoNews(e.target.value);
     });
+
+    // Charger par défaut
+    loadAutoNews("Burkina Faso");
   </script>
+
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      font-family: Arial, sans-serif;
+    }
+    .sidebar {
+      width: 220px;
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+    }
+    .sidebar h2 {
+      margin-top: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      margin: 15px 0;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .content {
+      margin-left: 240px;
+      padding: 20px;
+      width: 100%;
+    }
+    .news-item {
+      background: #f4f4f4;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  </style>
 </body>
 </html>
