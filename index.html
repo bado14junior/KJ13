@@ -4,105 +4,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Junior Badolo Plateforme Global</title>
+  <title>JB Plateforme Global</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="icons/icon-192.png" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #004080;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    .menu-btn {
-      background-color: transparent;
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-    }.sidebar {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: #f4f4f4;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-      padding-top: 60px;
-      transition: right 0.3s ease-in-out;
-    }
-
-    .sidebar.active {
-      right: 0;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 12px 20px;
-      text-decoration: none;
-      color: #333;
-      border-bottom: 1px solid #ccc;
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    footer {
-      background-color: #004080;
-      color: white;
-      text-align: center;
-      padding: 10px;
-    }
-  </style>
 </head>
 <body>
+
   <header>
-    <h1>JUNIOR BADOLO Plateforme Global</h1>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <nav style="background-color: #111; padding: 10px;">
+      <ul style="list-style: none; display: flex; flex-wrap: wrap; margin: 0; padding: 0;">
+        <li style="margin-right: 15px;"><a href="index.html" style="color: white; text-decoration: none;">Accueil</a></li>
+        <li style="margin-right: 15px;"><a href="profil.html" style="color: white; text-decoration: none;">Profil</a></li>
+        <li style="margin-right: 15px;"><a href="parametres.html" style="color: white; text-decoration: none;">Paramètres</a></li>
+        <li style="margin-right: 15px;"><a href="boutique.html" style="color: white; text-decoration: none;">Boutique</a></li>
+        <li style="margin-right: 15px;"><a href="actualites.html" style="color: white; text-decoration: none;">Actualités</a></li><li style="margin-right: 15px;"><a href="blog.html" style="color: white; text-decoration: none;">Blog</a></li>
+        <li style="margin-right: 15px;"><a href="media.html" style="color: white; text-decoration: none;">Médias</a></li>
+        <li style="margin-right: 15px;"><a href="messagerie.html" style="color: white; text-decoration: none;">Messagerie</a></li>
+        <li style="margin-right: 15px;"><a href="abonnement.html" style="color: white; text-decoration: none;">Abonnement</a></li>
+        <li style="margin-right: 15px;"><a href="admin.html" style="color: white; text-decoration: none;">Admin</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="sidebar" id="sidebar">
-    <a href="index.html">Accueil</a>
-    <a href="actualites.html">Actualités</a>
-    <a href="blog.html">Blog</a>
-    <a href="media.html">Média</a>
-    <a href="messagerie.html">Messagerie</a>
-    <a href="abonnement.html">Abonnement</a>
-    <a href="paiement.html">Paiement</a>
-    <a href="admin_dashboard.html">Admin</a>
-    <a href="parametres.html">Paramètres</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
-  <main>
-    <h2>Bienvenue sur JUNIOR BADOLO Plateforme Global</h2><p>Votre solution numérique tout-en-un.</p>
-    <p>Utilisez le menu (☰) pour accéder à toutes les pages.</p>
+  <main style="padding: 20px;">
+    <h1>Bienvenue sur JB Plateforme Global</h1>
+    <p>Une plateforme tout-en-un : actualités, boutique, messagerie, blog et plus encore.</p>
   </main>
 
-  <footer>
-    <p>&copy; 2025 JUNIOR BADOLO Plateforme Global. Tous droits réservés.</p>
+  <footer style="background-color: #111; color: white; text-align: center; padding: 10px;">
+    <p>&copy; 2025 JB Plateforme Global. Tous droits réservés.</p>
   </footer>
 
-  <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('active');
-    }
-  </script>
 </body>
 </html>
