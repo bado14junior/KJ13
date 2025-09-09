@@ -2,96 +2,174 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mon Profil - JB Plateforme Global</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Profil - JB Plateforme</title>
   <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
       background-color: #f0f2f5;
-      margin: 0;
-      padding: 0;
     }
-
-    .container {
-      max-width: 500px;
-      margin: 50px auto;
-      background: white;
-      border-radius: 8px;
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background-color: #003366;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+    .sidebar {
+      width: 220px;
+      background-color: #003366;
+      color: white;
+      position: fixed;
+      top: 0; bottom: 0; left: 0;
+      padding-top: 60px;
+      transition: transform 0.3s ease;
+    }
+    .sidebar a {
+      display: block;padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background-color: #0059b3;
+    }
+    .main {
+      margin-left: 220px;
+      padding: 80px 20px 20px 20px;
+      flex: 1;
+    }
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .main {
+        margin-left: 0;
+        padding-top: 80px;
+      }
+      .menu-btn {
+        display: block;
+      }
+    }
+    .profile-container {
+      background-color: white;
       padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
+      border-radius: 10px;
+      max-width: 500px;
     }
-
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #007bff;
+    .profile-container h2 {
+      margin-bottom: 20px;
+      color: #003366;
     }
-
-    h1 {
-      font-size: 22px;
-      color: #333;
+    .profile-container label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
     }
-
-    p {
-      font-size: 16px;
-      color: #555;
-      margin: 5px 0;
+    .profile-container input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
-
-    button {
-      background-color: #007bff;
+    .profile-container button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #003366;
       color: white;
       border: none;
-      padding: 10px 20px;
-      margin-top: 15px;border-radius: 5px;
+      border-radius: 5px;
       cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <img id="photo" src="default.png" alt="Photo de profil" class="profile-img">
-    <h1 id="nom">Nom</h1>
-    <p><strong>Email :</strong> <span id="email">email@example.com</span></p>
-
-    <button onclick="modifierProfil()">Modifier le profil</button><br><br>
-    <button onclick="logout()">Se déconnecter</button>
+  <div class="header"><button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h2 style="margin-left: 10px;">JB Plateforme</h2>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const utilisateur = JSON.parse(localStorage.getItem('utilisateurConnecte'));
+  <nav class="sidebar" id="sidebar">
+    <a href="index.html">Accueil</a>
+    <a href="blog.html">Blog</a>
+    <a href="activites.html">Activités</a>
+    <a href="services.html">Services</a>
+    <a href="boutique.html">Boutique</a>
+    <a href="connexion.html">Connexion</a>
+    <a href="abonnement.html">Abonnement</a>
+    <a href="messagerie.html">Messagerie</a>
+    <a href="profil.html" style="background-color: #0059b3;">Profil</a>
+    <a href="parametres.html">Paramètres</a>
+    <a href="admin.html">Admin</a>
+  </nav>
 
-      if (utilisateur) {
-        document.getElementById('nom').textContent = utilisateur.nom || "Nom inconnu";
-        document.getElementById('email').textContent = utilisateur.email || "Non défini";
-        document.getElementById('photo').src = utilisateur.photo || "default.png";
-      } else {
-        alert("Vous devez être connecté !");
-        window.location.href = "connexion.html";
+  <main class="main">
+    <div class="profile-container">
+      <h2>Mon Profil</h2>
+
+      <label for="name">Nom complet</label>
+      <input type="text" id="name" placeholder="Votre nom" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="votre@email.com" />
+
+      <label for="bio">Bio</label>
+      <textarea id="bio" placeholder="Quelques mots sur vous..."></textarea>
+
+      <label for="photo">Photo de profil (URL)</label>
+      <input type="url" id="photo" placeholder="https://..." />
+
+      <button onclick="saveProfile()">Enregistrer</button>
+    </div>
+  </main>
+
+  <script>const sidebar = document.getElementById('sidebar');
+
+    function toggleMenu() {
+      sidebar.classList.toggle('active');
+    }
+
+    function saveProfile() {
+      const profile = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        bio: document.getElementById('bio').value,
+        photo: document.getElementById('photo').value,
+      };
+      localStorage.setItem('userProfile', JSON.stringify(profile));
+      alert("Profil enregistré !");
+    }
+
+    window.onload = () => {
+      const saved = JSON.parse(localStorage.getItem('userProfile'));
+      if (saved) {
+        document.getElementById('name').value = saved.name || '';
+        document.getElementById('email').value = saved.email || '';
+        document.getElementById('bio').value = saved.bio || '';
+        document.getElementById('photo').value = saved.photo || '';
       }
-    });
-
-    function logout() {
-      localStorage.removeItem('utilisateurConnecte');
-      window.location.href = "connexion.html";
-    }
-
-    function modifierProfil() {
-      alert("Fonction de modification bientôt disponible !");// Tu peux rediriger vers une autre page ou afficher un formulaire
-    }
+    };
   </script>
 
 </body>
