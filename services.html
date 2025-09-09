@@ -2,39 +2,122 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services - JB Plateforme</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #003366;
+      color: white;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding-top: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #0059b3;
+    }
+
+    .main {
+      margin-left: 220px;
+      padding: 20px;
+      flex: 1;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #003366;
+      color: white;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    .menu-btn {background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+        padding-top: 60px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="actualites.html">Actualités</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h1>Nos Services</h1>
-      <p>Voici ce que nous proposons sur JB Plateforme Global :</p>
-      <ul>
-        <li>Développement web et mobile</li>
-        <li>Conseil en stratégie digitale</li>
-        <li>Marketing numérique & SEO</li>
-        <li>Formation et accompagnement</li>
-      </ul>
-    </section>
-  </main>
+  <div class="header">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h2 style="margin-left: 10px;">JB Plateforme</h2>
+  </div>
 
-  <footer>
-    <p>&copy; 2025 JB Plateforme. Tous droits réservés.</p>
-  </footer>
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Accueil</a>
+    <a href="blog.html">Blog</a>
+    <a href="activites.html">Activités</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="abonnement.html">Abonnement</a>
+    <a href="connexion.html">Connexion</a>
+    <a href="boutique.html">Boutique</a>
+    <a href="profil.html">Profil</a>
+    <a href="parametres.html">Paramètres</a>
+    <a href="admin.html">Admin</a>
+  </div>
+
+  <div class="main">
+    <h1>Nos Services</h1>
+    <p>Voici les services que nous proposons sur la plateforme JB :</p>
+    <!-- Ajouter ici la liste ou description des services -->
+  </div><script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
