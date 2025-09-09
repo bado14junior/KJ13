@@ -4,35 +4,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JB Plateforme Global</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>JB Plateforme</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #003366;
+      color: white;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding-top: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #0059b3;
+    }
+
+    .main {
+      margin-left: 220px;
+      padding: 20px;
+      flex: 1;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #003366;
+      color: white;
+      height: 60px;
+      display: flex;align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+        padding-top: 60px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <nav style="background-color: #111; padding: 10px;">
-      <ul style="list-style: none; display: flex; flex-wrap: wrap; margin: 0; padding: 0;">
-        <li style="margin-right: 15px;"><a href="index.html" style="color: white; text-decoration: none;">Accueil</a></li>
-        <li style="margin-right: 15px;"><a href="profil.html" style="color: white; text-decoration: none;">Profil</a></li>
-        <li style="margin-right: 15px;"><a href="parametres.html" style="color: white; text-decoration: none;">Paramètres</a></li>
-        <li style="margin-right: 15px;"><a href="boutique.html" style="color: white; text-decoration: none;">Boutique</a></li>
-        <li style="margin-right: 15px;"><a href="actualites.html" style="color: white; text-decoration: none;">Actualités</a></li><li style="margin-right: 15px;"><a href="blog.html" style="color: white; text-decoration: none;">Blog</a></li>
-        <li style="margin-right: 15px;"><a href="media.html" style="color: white; text-decoration: none;">Médias</a></li>
-        <li style="margin-right: 15px;"><a href="messagerie.html" style="color: white; text-decoration: none;">Messagerie</a></li>
-        <li style="margin-right: 15px;"><a href="abonnement.html" style="color: white; text-decoration: none;">Abonnement</a></li>
-        <li style="margin-right: 15px;"><a href="admin.html" style="color: white; text-decoration: none;">Admin</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="header">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h2 style="margin-left: 10px;">JB Plateforme</h2>
+  </div>
 
-  <main style="padding: 20px;">
-    <h1>Bienvenue sur JB Plateforme Global</h1>
-    <p>Une plateforme tout-en-un : actualités, boutique, messagerie, blog et plus encore.</p>
-  </main>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Accueil</a>
+    <a href="blog.html">Blog</a>
+    <a href="activites.html">Activités</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="abonnement.html">Abonnement</a>
+    <a href="connexion.html">Connexion</a>
+    <a href="boutique.html">Boutique</a>
+    <a href="profil.html">Profil</a>
+    <a href="parametres.html">Paramètres</a>
+    <a href="admin.html">Admin</a>
+  </div>
 
-  <footer style="background-color: #111; color: white; text-align: center; padding: 10px;">
-    <p>&copy; 2025 JB Plateforme Global. Tous droits réservés.</p>
-  </footer>
+  <!-- Main content -->
+  <div class="main"><h1>Bienvenue sur JB Plateforme</h1>
+    <p>Voici le contenu principal de la page d'accueil.</p>
+  </div>
 
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
